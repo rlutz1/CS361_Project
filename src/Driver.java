@@ -2,8 +2,8 @@
 
 public class Driver {
 
-    public static final String FILE_NAME = "Integer_Unsorted_2^30"; // playground
-    public static final int NUM_NUMBERS = (int) Math.pow(2, 30); // 16
+    public static final String FILE_NAME = "Integer_Unsorted_2^29"; // "Integer_Unsorted_2^30"; // playground
+    public static final int NUM_NUMBERS = (int) Math.pow(2, 29); // 16
 
     public static void main(String[] args) {
         ThreeWayMergeSort ms = new ThreeWayMergeSort();
@@ -13,6 +13,7 @@ public class Driver {
         );
         ms.print(false);
         ms.sort(0, NUM_NUMBERS - 1);
+        ms.print(false);
         System.out.println("Done.");
         System.out.println("Sorted: " + ms.isSorted());
 

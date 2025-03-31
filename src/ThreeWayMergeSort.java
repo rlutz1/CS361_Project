@@ -46,6 +46,9 @@ public class ThreeWayMergeSort {
         sort (low + third + 1, high - third);
         sort (high - third + 1, high);
 
+//        merge (low, low + third, low + third + 1, high - third);
+//        merge (low, high - third, high - third + 1, high);
+
         copyIn (
                 merge (low, low + third, low + third + 1, high - third),
                 low,
@@ -59,6 +62,14 @@ public class ThreeWayMergeSort {
 //        print(true);
     }
 
+    /**
+     * todo: issue with memory on my machine with 2^30 case.
+     * @param startA
+     * @param endA
+     * @param startB
+     * @param endB
+     * @return
+     */
     private short[] merge(int startA, int endA, int startB, int endB) {
         int i = startA, j = startB, k = 0;
         short[] temp = new short[endB - startA + 1];
@@ -86,6 +97,7 @@ public class ThreeWayMergeSort {
         return temp;
 
     } // end method
+
 
     private void copyIn(short[] temp, int start, int end) {
         for (int i = start, j = 0; i <= end; i++, j++) {
