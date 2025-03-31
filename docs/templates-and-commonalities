@@ -40,19 +40,20 @@ public void print(boolean printNums) {
  } // end method
 
 
- /**
-  * simple ascending list checker to run for testing purposes on
-  * large data sets. to make my life eaiser :)
-  * @return if the list has been sorted
-  */
- public boolean isSorted() {
-     int i = 0, j = 1;
+/**
+ * simple ascending list checker to run for testing purposes on
+ * large data sets. to make my life eaiser :)
+ * @return if the list has been sorted
+ */
+public boolean isSorted() {
+    int i = 0, j = 1;
 
-     while (j < toSort.length) {
-         if (toSort[0] > toSort[j]) {
-             return false;
-         } // end if
-     } // end loop
+    while (j < toSort.length) {
+        if (toSort[i] > toSort[j]) {
+            return false;
+        } // end if
+        i++; j++;
+    } // end loop
 
-     return true;
- } // end method
+    return true;
+} // end method

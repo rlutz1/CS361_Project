@@ -1,22 +1,41 @@
-
+import java.util.Random;
 
 public class Driver {
 
-    public static final String FILE_NAME = "Integer_Unsorted_2^29"; // "Integer_Unsorted_2^30"; // playground
-    public static final int NUM_NUMBERS = (int) Math.pow(2, 29); // 16
+    public static final String FILE_NAME = "Integer_Unsorted_2^23"; // "Integer_Unsorted_2^30"; // playground
+    public static final int NUM_NUMBERS = (int) Math.pow(2, 23);//(int) Math.pow(2, 3); // 16
 
     public static void main(String[] args) {
-        ThreeWayMergeSort ms = new ThreeWayMergeSort();
-        ms.initArray(
+//        testThreeWayMS();
+        testRandomQS();
+
+    }
+
+    public static void testRandomQS() {
+        RandomizedQuickSort rqs = new RandomizedQuickSort();
+        rqs.initArray(
                 "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
                 NUM_NUMBERS
         );
-        ms.print(false);
-        ms.sort(0, NUM_NUMBERS - 1);
-        ms.print(false);
+        rqs.print(false);
+        rqs.sort(0, NUM_NUMBERS - 1);
+        rqs.print(false);
         System.out.println("Done.");
-        System.out.println("Sorted: " + ms.isSorted());
+        System.out.println("Sorted: " + rqs.isSorted());
 
+    }
+
+    public static void testThreeWayMS() {
+        ThreeWayMergeSort twms = new ThreeWayMergeSort();
+        twms.initArray(
+                "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
+                NUM_NUMBERS
+        );
+        twms.print(false);
+        twms.sort(0, NUM_NUMBERS - 1);
+        twms.print(false);
+        System.out.println("Done.");
+        System.out.println("Sorted: " + twms.isSorted());
     }
 }
 
