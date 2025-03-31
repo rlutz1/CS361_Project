@@ -2,6 +2,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * Tim sort: Tim sort is a hybrid sorting algorithm derived from merge sort
+ * and insertion sort, designed to perform well on real-world data. It is the
+ * default sorting algorithm in Python, Java, and Android
+ * todo:
+ *
+ */
+
 public class TimSort {
 
     private short[] toSort = null;

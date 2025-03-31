@@ -2,6 +2,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * Sorting using a quad heap: You will be implementing a modified heap
+ * called a quad-heap, which is a degree 4 tree that is filled on all levels
+ * except the very last, that is filled from left to right
+ * todo:
+ *
+ */
+
 public class QuadHeapSort {
 
     private short[] toSort = null;

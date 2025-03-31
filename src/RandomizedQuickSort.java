@@ -2,6 +2,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * Randomized quick sort: You will implement the randomized quick sort
+ * algorithm. In each iteration, the pivot must be randomly chosen using a
+ * random number generator.
+ * todo:
+ */
+
 public class RandomizedQuickSort {
 
     private short[] toSort = null;

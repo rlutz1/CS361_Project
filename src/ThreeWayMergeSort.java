@@ -3,6 +3,9 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
+ * 3-way merge sort: You will be implementing a 3-way merge sort, which
+ * divides the given input into 3 subsets of roughly equal size and recursively
+ * sort each subsetd
  * todo:
  * -- read in text file to formulate a short[]; make this easy to maybe abstract out
  * --
