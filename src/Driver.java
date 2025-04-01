@@ -2,8 +2,8 @@ import java.util.Random;
 
 public class Driver {
 
-    public static final String FILE_NAME = "Integer_Unsorted_2^23"; // "Integer_Unsorted_2^30"; // playground
-    public static final int NUM_NUMBERS = (int) Math.pow(2, 23);//(int) Math.pow(2, 3); // 16
+    public static final String FILE_NAME = "Integer_Unsorted_2^29"; // "Integer_Unsorted_2^30"; // playground
+    public static final int NUM_NUMBERS = (int) Math.pow(2, 29);//(int) Math.pow(2, 3); // 16
 
     public static void main(String[] args) {
 //        testThreeWayMS();

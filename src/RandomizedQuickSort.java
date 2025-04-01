@@ -8,6 +8,8 @@ import java.util.Scanner;
  * algorithm. In each iteration, the pivot must be randomly chosen using a
  * random number generator.
  * todo:
+ * -- investigate the stack overflow on large input > 2^23
+ * -- implement an iterative version of quicksort to see if that solves the stack overflow
  */
 
 public class RandomizedQuickSort {
@@ -39,7 +41,7 @@ public class RandomizedQuickSort {
      * method to sort the array utilizing randomized quick sort.
      */
     public void sort(int low, int high) {
-        if (high - low < 1) { return; }
+        if (low >= high) { return; }
         int pivot = partition(low, high);
         sort(low, pivot - 1);
         sort(pivot + 1, high);
@@ -55,6 +57,10 @@ public class RandomizedQuickSort {
      * @return
      */
     private int partition(int start, int end) {
+//        if (start == 0) {
+//            System.out.println("start:  " + start + "  end:  " + end);
+//        }
+
         int randPivot = getRandomPivot(start, end);
         swap(randPivot, end);
 //        System.out.println("Random pivot: " + randPivot);
