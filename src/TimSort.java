@@ -56,9 +56,10 @@ public class TimSort {
         int i = 0, j = 1;
 
         while (j < toSort.length) {
-            if (toSort[0] > toSort[j]) {
+            if (toSort[i] > toSort[j]) {
                 return false;
             } // end if
+            i++; j++;
         } // end loop
 
         return true;

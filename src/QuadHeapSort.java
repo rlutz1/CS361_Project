@@ -52,11 +52,10 @@ public class QuadHeapSort {
     } // end method
 
 
-    // todo: feel like its a int wrap error
-    public void maxHeapify(int start, int end) { // todo, max
-        if (start < (int) Math.pow(2,28)) {
+    public void maxHeapify(int start, int end) {
+        if (start < (int) Math.pow(2,28)) { // limit to note
             int child1 = 4 * start + 1;
-            int child2 = 4 * start + 2;// todo 4 children
+            int child2 = 4 * start + 2;
             int child3 = 4 * start + 3;
             int child4 = 4 * start + 4;
             int max = start;
