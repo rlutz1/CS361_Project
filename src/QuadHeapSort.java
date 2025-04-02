@@ -37,7 +37,7 @@ public class QuadHeapSort {
      * =============================================================
      */
 
-
+// Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index -27 out of bounds for length 1073741824
     public void sort(int size) {
 //        int size = toSort.length;
 
@@ -52,33 +52,37 @@ public class QuadHeapSort {
     } // end method
 
 
+    // todo: feel like its a int wrap error
     public void maxHeapify(int start, int end) { // todo, max
-        int child1 = 4 * start + 1;
-        int child2 = 4 * start + 2;// todo 4 children
-        int child3 = 4 * start + 3;
-        int child4 = 4 * start + 4;
-        int max = start;
+        if (start < (int) Math.pow(2,28)) {
+            int child1 = 4 * start + 1;
+            int child2 = 4 * start + 2;// todo 4 children
+            int child3 = 4 * start + 3;
+            int child4 = 4 * start + 4;
+            int max = start;
 
-        if (child1 < end && toSort[child1] > toSort[max]) { // todo iterative loop
-            max = child1;
+            if (child1 < end && toSort[child1] > toSort[max]) { // todo iterative loop
+                max = child1;
+            }
+
+            if (child2 < end && toSort[child2] > toSort[max]) {
+                max = child2;
+            }
+
+            if (child3 < end && toSort[child3] > toSort[max]) {
+                max = child3;
+            }
+
+            if (child4 < end && toSort[child4] > toSort[max]) {
+                max = child4;
+            }
+
+            if (max != start) {
+                swap(start, max);
+                maxHeapify(max, end);
+            }
         }
 
-        if (child2 < end && toSort[child2] > toSort[max]) {
-            max = child2;
-        }
-
-        if (child3 < end && toSort[child3] > toSort[max]) {
-            max = child3;
-        }
-
-        if (child4 < end && toSort[child4] > toSort[max]) {
-            max = child4;
-        }
-
-        if (max != start) {
-            swap(start, max);
-            maxHeapify(max, end);
-        }
     }
 
     /**
