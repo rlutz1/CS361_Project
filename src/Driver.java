@@ -2,12 +2,27 @@ import java.util.Random;
 
 public class Driver {
 
-    public static final String FILE_NAME = "Integer_Unsorted_2^29"; // "Integer_Unsorted_2^30"; // playground
-    public static final int NUM_NUMBERS = (int) Math.pow(2, 29);//(int) Math.pow(2, 3); // 16
+    public static final String FILE_NAME = "Integer_Unsorted_2^30"; // "Integer_Unsorted_2^30"; // playground
+    public static final int NUM_NUMBERS = (int) Math.pow(2, 30);//(int) Math.pow(2, 3); // 16
 
     public static void main(String[] args) {
 //        testThreeWayMS();
-        testRandomQS();
+//        testRandomQS();
+        testQuadHS();
+
+    }
+
+    public static void testQuadHS() {
+        QuadHeapSort qhs = new QuadHeapSort();
+        qhs.initArray(
+                "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
+                NUM_NUMBERS
+        );
+        qhs.print(false);
+        qhs.sort(NUM_NUMBERS);
+        qhs.print(false);
+        System.out.println("Done.");
+        System.out.println("Sorted: " + qhs.isSorted());
 
     }
 

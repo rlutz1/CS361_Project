@@ -12,7 +12,86 @@ import java.util.Scanner;
 
 public class QuadHeapSort {
 
+    /*
+     * =============================================================
+     * GLOBALS/CONSTANTS
+     * =============================================================
+     */
+
+
     private short[] toSort = null;
+
+
+    /*
+     * =============================================================
+     * CONSTRUCTORS
+     * =============================================================
+     */
+
+    public QuadHeapSort() { } // end constructor
+
+
+    /*
+     * =============================================================
+     * HELPER METHODS
+     * =============================================================
+     */
+
+
+    public void sort(int size) {
+//        int size = toSort.length;
+
+        for (int i = (size - 2) / 4; i >= 0; i--) { // todo , not div 2. div 4?
+            maxHeapify(i, size);
+        } // end loop
+
+        for (int i = size - 1; i >= 0; i--) {
+            swap(0, i);
+            maxHeapify(0, i);
+        } // end loop
+    } // end method
+
+
+    public void maxHeapify(int start, int end) { // todo, max
+        int child1 = 4 * start + 1;
+        int child2 = 4 * start + 2;// todo 4 children
+        int child3 = 4 * start + 3;
+        int child4 = 4 * start + 4;
+        int max = start;
+
+        if (child1 < end && toSort[child1] > toSort[max]) { // todo iterative loop
+            max = child1;
+        }
+
+        if (child2 < end && toSort[child2] > toSort[max]) {
+            max = child2;
+        }
+
+        if (child3 < end && toSort[child3] > toSort[max]) {
+            max = child3;
+        }
+
+        if (child4 < end && toSort[child4] > toSort[max]) {
+            max = child4;
+        }
+
+        if (max != start) {
+            swap(start, max);
+            maxHeapify(max, end);
+        }
+    }
+
+    /**
+     * general method to swap something in our list.
+     * common logic.
+     * @param x item to swap
+     * @param y item to swap
+     */
+    private void swap(int x, int y) {
+        short temp = toSort[x];
+        toSort[x] = toSort[y];
+        toSort[y] = temp;
+    } // end method
 
     /**
      * simple print function for testing purposes.
@@ -56,11 +135,23 @@ public class QuadHeapSort {
         int i = 0, j = 1;
 
         while (j < toSort.length) {
-            if (toSort[0] > toSort[j]) {
+            if (toSort[i] > toSort[j]) {
                 return false;
             } // end if
+            i++; j++;
         } // end loop
 
         return true;
     } // end method
+
+
+    /*
+     * =============================================================
+     * GETTERS/SETTERS
+     * =============================================================
+     */
+
+    public short[] getToSort() {
+        return toSort;
+    } // end getter
 }
