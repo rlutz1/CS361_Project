@@ -41,7 +41,7 @@ public class QuadHeapSort {
     public void sort(int size) {
 //        int size = toSort.length;
 
-        for (int i = (size - 2) / 4; i >= 0; i--) { // todo , not div 2. div 4?
+        for (int i = (size - 2) / 4; i >= 0; i--) {
             maxHeapify(i, size);
         } // end loop
 

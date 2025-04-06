@@ -8,8 +8,21 @@ public class Driver {
     public static void main(String[] args) {
 //        testThreeWayMS();
 //        testRandomQS();
-        testQuadHS();
+//        testQuadHS();
+        testTimSort();
+    }
 
+    public static void testTimSort() {
+        TimSort ts = new TimSort();
+        ts.initArray(
+                "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
+                NUM_NUMBERS
+        );
+        ts.print(true);
+        ts.sort();
+        ts.print(true);
+        System.out.println("Done.");
+        System.out.println("Sorted: " + ts.isSorted());
     }
 
     public static void testQuadHS() {
@@ -18,9 +31,9 @@ public class Driver {
                 "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
                 NUM_NUMBERS
         );
-        qhs.print(true);
+        qhs.print(false);
         qhs.sort(NUM_NUMBERS);
-        qhs.print(true);
+        qhs.print(false);
         System.out.println("Done.");
         System.out.println("Sorted: " + qhs.isSorted());
 

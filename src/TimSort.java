@@ -12,7 +12,41 @@ import java.util.Scanner;
 
 public class TimSort {
 
+    /*
+     * =============================================================
+     * GLOBALS/CONSTANTS
+     * =============================================================
+     */
+
     private short[] toSort = null;
+    private final static byte MIN_RUN = 32; // min run size default for tim sort
+
+
+    /*
+     * =============================================================
+     * CONSTRUCTORS
+     * =============================================================
+     */
+
+    public TimSort() {  } // end constructor
+
+
+    /*
+     * =============================================================
+     * HELPER FUNCTIONS
+     * =============================================================
+     */
+
+    /**
+     * method to sort the array a la tim sort.
+     * general approach is:
+     * (1) use insertion sort on sub arrays of no more than 32 in length
+     * (2) use merge from mergesort to merge the sorted arrays.
+     * as of 4/6/25, these will be implemented with no optimzations to begin with.
+     */
+    public void sort() {
+
+    }
 
     /**
      * simple print function for testing purposes.
@@ -64,4 +98,16 @@ public class TimSort {
 
         return true;
     } // end method
+
+
+    /*
+     * =============================================================
+     * GETTERS/SETTERS
+     * =============================================================
+     */
+
+    public short[] getToSort(){
+        return toSort;
+    } // end getter
+
 }
