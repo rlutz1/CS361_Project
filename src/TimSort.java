@@ -45,8 +45,69 @@ public class TimSort {
      * as of 4/6/25, these will be implemented with no optimzations to begin with.
      */
     public void sort() {
+        insertionSort(0, toSort.length - 1);
+    } // end method
 
-    }
+    /**
+     * todo:
+     * optimize with binary search?
+     * @param low
+     * @param high
+     */
+    private void insertionSort(int low, int high) {
+        int j;
+        for (int i = low; i < high; i++) { // for every element of the list
+
+            if (toSort[i + 1] < toSort[i]) {
+                j = i;
+                short temp = toSort[i + 1];
+                while (j >= low && toSort[j] > temp) {
+                    toSort[j + 1] = toSort[j];
+                    j--;
+                } // end loop
+                toSort[j + 1] = temp;
+            } // end if
+//            print(true);
+        } // end loop
+
+    } // end method
+
+    /**
+     * todo: issue with memory on my machine with 2^30 case.
+     * -- optimize with galloping?
+     * basic merge function from merge sort.
+     * @param startA
+     * @param endA
+     * @param startB
+     * @param endB
+     * @return
+     */
+    private void merge(int startA, int endA, int startB, int endB) {
+        int i = startA, j = startB, k = 0;
+        short[] temp = new short[endB - startA + 1];
+
+
+        while (i <= endA && j <= endB) {
+            if (toSort[i] > toSort[j]) {
+                temp[k] = toSort[j]; k++; j++;
+            } else {
+                temp[k] = toSort[i]; k++; i++;
+            } // end if
+        } // end loop
+
+        while (i <= endA) {
+            temp[k] = toSort[i]; k++; i++;
+        } // end while
+
+        while (j <= endB) {
+            temp[k] = toSort[j]; k++; j++;
+        } // end while
+
+        for (i = startA, k = 0; i <= endB; i++, k++) {
+            toSort[i] = temp[k];
+        } // end loop
+
+    } // end method
 
     /**
      * simple print function for testing purposes.
