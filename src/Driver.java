@@ -1,17 +1,24 @@
-import java.util.Random;
+import DoubleSort.TimSortDouble;
+import IntSort.QuadHeapSort;
+import IntSort.RandomizedQuickSort;
+import IntSort.ThreeWayMergeSort;
+import IntSort.TimSort;
 
 public class Driver {
 
     public static final String FILE_NAME = "testing"; // "Integer_Unsorted_2^30"; // playground
     public static final int NUM_NUMBERS = 7;//(int) Math.pow(2, 3); // 16
+    public static final boolean PRINT_ARR = true;
 
     public static void main(String[] args) {
 //        TestCaseGenerator gtc = new TestCaseGenerator();
 //        gtc.generateDoubles(6,-500,500,"testing");
-        testThreeWayMSDouble();
+//        testThreeWayMS();
+//        testThreeWayMSDouble();
 //        testRandomQS();
 //        testQuadHS();
 //        testTimSort();
+        testTimSortDouble();
     }
 
     public static void testTimSort() {
@@ -20,9 +27,22 @@ public class Driver {
                 "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
                 NUM_NUMBERS
         );
-        ts.print(false);
+        ts.print(PRINT_ARR);
         ts.sort();
-        ts.print(false);
+        ts.print(PRINT_ARR);
+        System.out.println("Done.");
+        System.out.println("Sorted: " + ts.isSorted());
+    }
+
+    public static void testTimSortDouble() {
+        TimSortDouble ts = new TimSortDouble();
+        ts.initArray(
+                "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
+                NUM_NUMBERS
+        );
+        ts.print(PRINT_ARR);
+        ts.sort();
+        ts.print(PRINT_ARR);
         System.out.println("Done.");
         System.out.println("Sorted: " + ts.isSorted());
     }
@@ -33,9 +53,9 @@ public class Driver {
                 "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
                 NUM_NUMBERS
         );
-        qhs.print(false);
+        qhs.print(PRINT_ARR);
         qhs.sort(NUM_NUMBERS);
-        qhs.print(false);
+        qhs.print(PRINT_ARR);
         System.out.println("Done.");
         System.out.println("Sorted: " + qhs.isSorted());
 
@@ -47,9 +67,9 @@ public class Driver {
                 "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
                 NUM_NUMBERS
         );
-        rqs.print(false);
+        rqs.print(PRINT_ARR);
         rqs.sort(0, NUM_NUMBERS - 1);
-        rqs.print(false);
+        rqs.print(PRINT_ARR);
         System.out.println("Done.");
         System.out.println("Sorted: " + rqs.isSorted());
 
@@ -61,9 +81,9 @@ public class Driver {
                 "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
                 NUM_NUMBERS
         );
-        twms.print(false);
+        twms.print(PRINT_ARR);
         twms.sort(0, NUM_NUMBERS - 1);
-        twms.print(false);
+        twms.print(PRINT_ARR);
         System.out.println("Done.");
         System.out.println("Sorted: " + twms.isSorted());
     }
@@ -74,9 +94,9 @@ public class Driver {
                 "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
                 NUM_NUMBERS
         );
-        twms.print(true);
+        twms.print(PRINT_ARR);
         twms.sort(0, NUM_NUMBERS - 1);
-        twms.print(true);
+        twms.print(PRINT_ARR);
         System.out.println("Done.");
         System.out.println("Sorted: " + twms.isSorted());
     }
