@@ -16,6 +16,9 @@
       + ascending list
       + descending list
       + non-power-of-two cases (num numbers == 17, 13, etc.)
++ *timsort*:
+  + things to note
+    + also breaking on 2^30 with out of memory error. so, it's the merge temp array. todo is to experiment with an in place merge and see if that will work, and then that should fix the three way ms as well.
 + process thoughts
   + have some sort of iteration. read in the file ONCE. maybe in the driver? idk, but have a loop at least that reads in the data and re sorts it. have it run like. 30 - 50 times? enough to get a clear average of the time it takes to sort via implementation. record all that data.
   + run test cases on different days. shut things down on laptop. MARKEDLY different performance time when my cpu is cleared up, so def note those outliers and take an array of data.
