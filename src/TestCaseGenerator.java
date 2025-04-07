@@ -35,7 +35,7 @@ public class TestCaseGenerator {
 //        if (sorted) {
 //            testDataDouble = sortedDataDouble(howMany, (short)lowerBound);
 //        } else {
-          testDataDouble = unsortedDataDouble(howMany, lowerBound, upperBound);
+          unsortedDataDouble(howMany, lowerBound, upperBound);
 //        } // end if
 
         File testFile = new File(testFolder + fileName);
@@ -137,18 +137,19 @@ public class TestCaseGenerator {
      * @param upperBound the highest number i want
      * @return a list of unsorted ints
      */
-    private double[] unsortedDataDouble (int howMany, int lowerBound, int upperBound) {
+    private void unsortedDataDouble (int howMany, int lowerBound, int upperBound) {
         Random rand = new Random();
 
-        double[] data = new double[howMany]; // todo, separate this out, stupid java
+        testDataDouble = new double[howMany]; // todo, separate this out, stupid java
+
         double next;
 
         for (int i = 0; i < howMany; i++) {
             next = rand.nextDouble(lowerBound, upperBound + 1);
-            data[i] = Math.round((next * 100.0)) / 100.0; // 2 decimal places
+            testDataDouble[i] = Math.round((next * 100.0)) / 100.0; // 2 decimal places
         } // end loop
 
-        return data;
+//        return data;
     } // end method
 
 //    /**

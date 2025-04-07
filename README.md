@@ -2,7 +2,11 @@
 
 ## Notes
 + all of them: implement as short[], int[] would take more careful planning because of memory issues.
-+ *mergesort*: we have an issue with 2^30 and getting memory space for the merge. temp arrays WILL NOT cut it with that size. consider special case for in place merging OR other options. check on this and see if the rabbit hole is worth it. 2^29 works just fine, takes ~60 seconds from first run.
++ *mergesort*: 
+  + progress: i can increase my jvm heapsize to ~6gb (maybe less for short, unsure yet), and we can sort the 2^30! so, time to ask humayra about this issue tomorrow 4/8 because unclear if that's acceptable or not. need to discuss the same problem with the doubles/floats bc floats are a min 32 bits, and that will cause issues.
+  + but, i can at least be testing, the more pertinent question is what on earth is going on with whoever would be testing it.
+  + yup, crashed with 10g in heap. jesus. definitely going to have to talk with her on this. best case, i may be able to downgrade to 32 bit floats and have the heap up high enough. ~~running with the doubles now. likely going to be a big problem there and will HAVE to downgrade to floats.~~
+    + ~~we have an issue with 2^30 and getting memory space for the merge. temp arrays WILL NOT cut it with that size. consider special case for in place merging OR other options. check on this and see if the rabbit hole is worth it. 2^29 works just fine, takes ~60 seconds from first run.~~
 + *quicksort*: well, fuck, stack overflow error on any case > 2^23. that's an issue. make sure its actually an input size issue and not logic, but seems to be fine with smallers. confirmed, all 2^24 and higher fail with a stack overflow. todo: try an iterative version over recursive. see if that solves the issue.
   + also try on a different machine.
 + *quad heapsort*: neat! this one will work for all cases! 

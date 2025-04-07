@@ -8,20 +8,31 @@ import IntSort.TimSort;
 
 public class Driver {
 
-    public static final String FILE_NAME = "testing"; // "Integer_Unsorted_2^30"; // playground
-    public static final int NUM_NUMBERS = 7;//(int) Math.pow(2, 3); // 16
-    public static final boolean PRINT_ARR = true;
+    public static final String FILE_NAME = "Double_Unsorted_2^30"; // "Integer_Unsorted_2^30"; // playground
+    public static final int NUM_NUMBERS = (int) Math.pow(2, 30);//(int) Math.pow(2, 3); // 16
+    public static final boolean PRINT_ARR = false;
 
     public static void main(String[] args) {
 //        TestCaseGenerator gtc = new TestCaseGenerator();
-//        gtc.generateDoubles(6,-500,500,"testing");
+//        gtc.generateDoubles((int) Math.pow(2, 20), -500, 500, "Double_Unsorted_2^20");
+//        gtc.generateDoubles((int) Math.pow(2, 21), -500, 500, "Double_Unsorted_2^21");
+//        gtc.generateDoubles((int) Math.pow(2, 22), -500, 500, "Double_Unsorted_2^22");
+//        gtc.generateDoubles((int) Math.pow(2, 23), -500, 500, "Double_Unsorted_2^23");
+//        gtc.generateDoubles((int) Math.pow(2, 24), -500, 500, "Double_Unsorted_2^24");
+//        gtc.generateDoubles((int) Math.pow(2, 25), -500, 500, "Double_Unsorted_2^25");
+//        gtc.generateDoubles((int) Math.pow(2, 26), -500, 500, "Double_Unsorted_2^26");
+//        gtc.generateDoubles((int) Math.pow(2, 27), -500, 500, "Double_Unsorted_2^27");
+//        gtc.generateDoubles((int) Math.pow(2, 28), -500, 500, "Double_Unsorted_2^28")
+//        gtc.generateDoubles((int) Math.pow(2, 29), -500, 500, "Double_Unsorted_2^29"); // -Xmx6g
+
+//        gtc.generateDoubles((int) Math.pow(2, 30), -500, 500, "Double_Unsorted_2^30"); // -Xmx10g
 //        testThreeWayMS();
-//        testThreeWayMSDouble();
-//        testRandomQS();
-        testRandomQSDouble();
-//        testQuadHS();
+        testThreeWayMSDouble();
+////        testRandomQS();
+//        testRandomQSDouble();
+////        testQuadHS();
 //        testQuadHSDouble();
-//        testTimSort();
+////        testTimSort();
 //        testTimSortDouble();
     }
 
