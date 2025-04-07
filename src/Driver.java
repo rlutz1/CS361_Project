@@ -1,3 +1,5 @@
+import DoubleSort.QuadHeapSortDouble;
+import DoubleSort.RandomizedQuickSortDouble;
 import DoubleSort.TimSortDouble;
 import IntSort.QuadHeapSort;
 import IntSort.RandomizedQuickSort;
@@ -16,9 +18,11 @@ public class Driver {
 //        testThreeWayMS();
 //        testThreeWayMSDouble();
 //        testRandomQS();
+        testRandomQSDouble();
 //        testQuadHS();
+//        testQuadHSDouble();
 //        testTimSort();
-        testTimSortDouble();
+//        testTimSortDouble();
     }
 
     public static void testTimSort() {
@@ -61,8 +65,36 @@ public class Driver {
 
     }
 
+    public static void testQuadHSDouble() {
+        QuadHeapSortDouble qhs = new QuadHeapSortDouble();
+        qhs.initArray(
+                "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
+                NUM_NUMBERS
+        );
+        qhs.print(PRINT_ARR);
+        qhs.sort(NUM_NUMBERS);
+        qhs.print(PRINT_ARR);
+        System.out.println("Done.");
+        System.out.println("Sorted: " + qhs.isSorted());
+
+    }
+
     public static void testRandomQS() {
         RandomizedQuickSort rqs = new RandomizedQuickSort();
+        rqs.initArray(
+                "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
+                NUM_NUMBERS
+        );
+        rqs.print(PRINT_ARR);
+        rqs.sort(0, NUM_NUMBERS - 1);
+        rqs.print(PRINT_ARR);
+        System.out.println("Done.");
+        System.out.println("Sorted: " + rqs.isSorted());
+
+    }
+
+    public static void testRandomQSDouble() {
+        RandomizedQuickSortDouble rqs = new RandomizedQuickSortDouble();
         rqs.initArray(
                 "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
                 NUM_NUMBERS
