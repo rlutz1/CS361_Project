@@ -2,14 +2,16 @@ import java.util.Random;
 
 public class Driver {
 
-    public static final String FILE_NAME = "Integer_Unsorted_2^30"; // "Integer_Unsorted_2^30"; // playground
-    public static final int NUM_NUMBERS = (int) Math.pow(2, 30);//(int) Math.pow(2, 3); // 16
+    public static final String FILE_NAME = "testing"; // "Integer_Unsorted_2^30"; // playground
+    public static final int NUM_NUMBERS = 7;//(int) Math.pow(2, 3); // 16
 
     public static void main(String[] args) {
-//        testThreeWayMS();
+//        TestCaseGenerator gtc = new TestCaseGenerator();
+//        gtc.generateDoubles(6,-500,500,"testing");
+        testThreeWayMSDouble();
 //        testRandomQS();
 //        testQuadHS();
-        testTimSort();
+//        testTimSort();
     }
 
     public static void testTimSort() {
@@ -62,6 +64,19 @@ public class Driver {
         twms.print(false);
         twms.sort(0, NUM_NUMBERS - 1);
         twms.print(false);
+        System.out.println("Done.");
+        System.out.println("Sorted: " + twms.isSorted());
+    }
+
+    public static void testThreeWayMSDouble() {
+        ThreeWayMergeSortDouble twms = new ThreeWayMergeSortDouble();
+        twms.initArray(
+                "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
+                NUM_NUMBERS
+        );
+        twms.print(true);
+        twms.sort(0, NUM_NUMBERS - 1);
+        twms.print(true);
         System.out.println("Done.");
         System.out.println("Sorted: " + twms.isSorted());
     }
