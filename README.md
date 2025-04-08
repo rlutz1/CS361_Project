@@ -1,7 +1,7 @@
 # CS361_Project
 
 ## TODO
-+ make an init array for all sort classes that just creates randomized test cases. it will likely save some time not having to read in a file each time.
+
 
 
 ## Notes
