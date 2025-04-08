@@ -22,8 +22,14 @@ public class RandomizedQuickSort {
      * =============================================================
      */
 
-    private short[] toSort = null;
-
+    private int[] toSort = null;
+//    private short[] toSort = {
+//            2, 5, 2, 2,
+//        7, 2, 5, 2,
+//        4, 2, 2, 2,
+//        8, 10, 2, 9
+//};
+    private Random random = new Random();
 
     /*
      * =============================================================
@@ -43,10 +49,11 @@ public class RandomizedQuickSort {
      * method to sort the array utilizing randomized quick sort.
      */
     public void sort(int low, int high) {
-        if (low >= high) { return; }
-        int pivot = partition(low, high);
-        sort(low, pivot - 1);
-        sort(pivot + 1, high);
+        if (low < high) {
+            int pivot = partition(low, high);
+            sort(low, pivot - 1);
+            sort(pivot + 1, high);
+        } // end if
     } // end method
 
     /**
@@ -59,20 +66,25 @@ public class RandomizedQuickSort {
      * @return
      */
     private int partition(int start, int end) {
-//        if (start == 0) {
-//            System.out.println("start:  " + start + "  end:  " + end);
+//        while (start < end && toSort[start] == toSort[start + 1]) {
+//            start++; //System.out.println("decreasing");
+//        }
+//
+//        while (end > start  && toSort[end] == toSort[end - 1]) {
+//            end--; //System.out.println("decreasing");
 //        }
 
-        int randPivot = getRandomPivot(start, end);
-        swap(randPivot, end);
-//        System.out.println("Random pivot: " + randPivot);
+        swap(getRandomPivot(start, end), end); // todo
+//        System.out.println("start: " + start);
+//        System.out.println("end: " + end);
 //        print(true);
         int b = start - 1, t = start;
 
         while (t < end) {
             if (toSort[t] < toSort[end]) {
-                swap(t, b + 1);
                 b++;
+                swap(t, b);
+
             } //end if
             t++;
         } // end loop
@@ -81,11 +93,7 @@ public class RandomizedQuickSort {
             swap(b + 1, end);
         } // end if
 
-//        System.out.println("Done partioning: ");
-//        print(true);
-
         return b + 1;
-
     } // end if
 
     /**
@@ -96,7 +104,6 @@ public class RandomizedQuickSort {
      * @return a random pivot index
      */
     private int getRandomPivot(int low, int high) {
-        Random random = new Random();
         return random.nextInt(low, high + 1);
     } // end method
 
@@ -107,7 +114,7 @@ public class RandomizedQuickSort {
      * @param y item to swap
      */
     private void swap(int x, int y) {
-        short temp = toSort[x];
+        int temp = toSort[x];
         toSort[x] = toSort[y];
         toSort[y] = temp;
     } // end method
@@ -132,15 +139,29 @@ public class RandomizedQuickSort {
      *             note that the test cases are all given as csv format
      */
     public void initArray(String path, int howMany) {
-        toSort = new short[howMany]; int counter = 0;
+        toSort = new int[howMany]; int counter = 0;
         try {
             Scanner s = new Scanner(new File(path)).useDelimiter(",");
             while (s.hasNext()) {
-                toSort[counter] = s.nextShort(); counter++;
+                toSort[counter] = s.nextInt(); counter++;
             } // end loop
         } catch (FileNotFoundException e) {
             throw new RuntimeException("Oops, no file there. Love, mergesort.");
         } // end try/catch
+
+    } // end method
+
+    /**
+     * gen a random test case
+     * from basic java io operations.
+     */
+    public void initArray(int howMany) {
+        toSort = new int[howMany];
+        Random rand = new Random();
+
+        for (int i = 0; i < howMany; i++) {
+            toSort[i] = rand.nextInt();
+        } // end loop
 
     } // end method
 
@@ -169,7 +190,7 @@ public class RandomizedQuickSort {
      * =============================================================
      */
 
-    public short[] getToSort(){
+    public int[] getToSort(){
         return toSort;
     } // end getter
 

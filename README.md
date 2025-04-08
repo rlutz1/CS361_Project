@@ -1,5 +1,9 @@
 # CS361_Project
 
+## TODO
++ make an init array for all sort classes that just creates randomized test cases. it will likely save some time not having to read in a file each time.
+
+
 ## Notes
 + all of them: implement as short[], int[] would take more careful planning because of memory issues.
 + *mergesort*: 
@@ -7,8 +11,9 @@
   + but, i can at least be testing, the more pertinent question is what on earth is going on with whoever would be testing it.
   + yup, crashed with 10g in heap. jesus. definitely going to have to talk with her on this. best case, i may be able to downgrade to 32 bit floats and have the heap up high enough. ~~running with the doubles now. likely going to be a big problem there and will HAVE to downgrade to floats.~~
     + ~~we have an issue with 2^30 and getting memory space for the merge. temp arrays WILL NOT cut it with that size. consider special case for in place merging OR other options. check on this and see if the rabbit hole is worth it. 2^29 works just fine, takes ~60 seconds from first run.~~
-+ *quicksort*: well, fuck, stack overflow error on any case > 2^23. that's an issue. make sure its actually an input size issue and not logic, but seems to be fine with smallers. confirmed, all 2^24 and higher fail with a stack overflow. todo: try an iterative version over recursive. see if that solves the issue.
-  + also try on a different machine.
++ *quicksort*: 
+  + QS update: changed the range to ints (need to set vm to -Xmx6g to load 2^30 ints into ram, but otherwise fine.) noticed that the range of numbers needs to be higher. the duplicates in the small range was causing the stack over flow and instituting the worst case scenario (each sub prob turned into n - 1 in size instead of n/2)
+    + also try on a different machine.
 + *quad heapsort*: neat! this one will work for all cases! 
   + things to note:
     + input caps at 2^30. this is due to integer overflow for child math. we do not attempt child math for any parent index >= 2^28. this is because the max signed int is 2^31. thus, the child of 2^28 would be 2^31 + 1 -> 4, which would overflow to -2^31. this is a limitation worth mentioning. works with all cases thus far with that simple 2^28 check.

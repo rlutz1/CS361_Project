@@ -2,6 +2,7 @@ package IntSort;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -127,6 +128,22 @@ public class QuadHeapSort {
         } catch (FileNotFoundException e) {
             throw new RuntimeException("Oops, no file there. Love, mergesort.");
         } // end try/catch
+
+    } // end method
+
+
+    /**
+     * gen a random test case
+     * from basic java io operations.
+     */
+    public void initArray(int howMany) {
+        toSort = new short[howMany];
+
+        Random rand = new Random();
+
+        for (int i = 0; i < howMany; i++) {
+            toSort[i] = (short)rand.nextInt(-60000, 60000 + 1);
+        } // end loop
 
     } // end method
 
