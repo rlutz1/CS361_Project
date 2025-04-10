@@ -66,25 +66,13 @@ public class RandomizedQuickSort {
      * @return
      */
     private int partition(int start, int end) {
-//        while (start < end && toSort[start] == toSort[start + 1]) {
-//            start++; //System.out.println("decreasing");
-//        }
-//
-//        while (end > start  && toSort[end] == toSort[end - 1]) {
-//            end--; //System.out.println("decreasing");
-//        }
-
-        swap(getRandomPivot(start, end), end); // todo
-//        System.out.println("start: " + start);
-//        System.out.println("end: " + end);
-//        print(true);
+        swap(getRandomPivot(start, end), end);
         int b = start - 1, t = start;
 
         while (t < end) {
             if (toSort[t] < toSort[end]) {
                 b++;
                 swap(t, b);
-
             } //end if
             t++;
         } // end loop
@@ -138,18 +126,18 @@ public class RandomizedQuickSort {
      * @param path file path given, will be ultimately from the command line/from driver
      *             note that the test cases are all given as csv format
      */
-    public void initArray(String path, int howMany) {
-        toSort = new int[howMany]; int counter = 0;
-        try {
-            Scanner s = new Scanner(new File(path)).useDelimiter(",");
-            while (s.hasNext()) {
-                toSort[counter] = s.nextInt(); counter++;
-            } // end loop
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("Oops, no file there. Love, mergesort.");
-        } // end try/catch
-
-    } // end method
+//    public void initArray(String path, int howMany) {
+//        toSort = new int[howMany]; int counter = 0;
+//        try {
+//            Scanner s = new Scanner(new File(path)).useDelimiter(",");
+//            while (s.hasNext()) {
+//                toSort[counter] = s.nextInt(); counter++;
+//            } // end loop
+//        } catch (FileNotFoundException e) {
+//            throw new RuntimeException("Oops, no file there. Love, mergesort.");
+//        } // end try/catch
+//
+//    } // end method
 
     /**
      * gen a random test case

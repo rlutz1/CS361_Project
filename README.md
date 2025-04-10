@@ -1,7 +1,15 @@
 # CS361_Project
 
-## TODO
+Default heap size command:
+-Xmx6g
 
+## TODO
++ make sure all sorts are randomly generating numbers--allow for seeding if wanting to replicate the same test case
++ look to rqs integer test in driver for easy format
++ for loop all of them
++ run and don't use computer for anything else
++ let's get at least 100 runs for each case. take weekend time to run for the large inputs.
++ this will clarify all final needs when running all of them. -- document 
 
 
 ## Notes
