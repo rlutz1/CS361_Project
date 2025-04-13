@@ -9,9 +9,14 @@ import IntSort.TimSort;
 public class Driver {
 
     public static final String FILE_NAME = "Integer_Unsorted_2^24"; // "Integer_Unsorted_2^30"; // playground
-    public static final int NUM_NUMBERS = (int) Math.pow(2, 24);//(int) Math.pow(2, 3); // 16
-    public static final boolean PRINT_ARR = false;
+    public static final int NUM_NUMBERS = (int) Math.pow(2, 20);//(int) Math.pow(2, 3); // 16
     public static final byte NUM_TEST_CASES = 20;
+
+    public static final boolean PRINT_ARR = false;
+    public static final boolean LOG = true;
+
+    public static final Log logger = new Log();
+
 
     public static void main(String[] args) {
         // generating test case files for consistent testing
@@ -19,7 +24,7 @@ public class Driver {
 //        generateIntFiles();
 
         for (int i = 0; i < NUM_TEST_CASES; i++) {
-            testRandomQS();
+            testRandomQS(NUM_NUMBERS);
         }
 
         // test int cases
@@ -90,21 +95,23 @@ public class Driver {
 
     }
 
-    public static void testRandomQS() {
+    public static void testRandomQS(int numNumbers) {
         RandomizedQuickSort rqs = new RandomizedQuickSort();
 //        rqs.initArray( // very slow, don't use for testing
 //                "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
 //                NUM_NUMBERS
 //        );
 
-        rqs.initArray((int) Math.pow(2, 20));
+//        rqs.initArray((int) Math.pow(2, 20));
+        rqs.initArray(numNumbers);
         rqs.print(PRINT_ARR);
 
         long startTime = System.nanoTime();
-        rqs.sort(0, (int) Math.pow(2, 20) - 1);
+        rqs.sort(0,numNumbers - 1);
         long endTime = System.nanoTime();
-        System.out.println("RQS Integer Done. Took " + ((endTime - startTime) / 1000000 + " ms"));  //divide by 1000000 to get MILLISECONDS.
 
+//        System.out.println("RQS Integer Done. Took " + ((endTime - startTime) / 1000000));  //divide by 1000000 to get MILLISECONDS.
+        logger.log("rqs_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
         rqs.print(PRINT_ARR);
         System.out.println("Sorted: " + rqs.isSorted());
 
