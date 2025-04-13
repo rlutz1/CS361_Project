@@ -9,7 +9,8 @@ import IntSort.TimSort;
 public class Driver {
 
     public static final String FILE_NAME = "Integer_Unsorted_2^24"; // "Integer_Unsorted_2^30"; // playground
-    public static final int NUM_NUMBERS = (int) Math.pow(2, 20);//(int) Math.pow(2, 3); // 16
+
+    public static final int NUM_NUMBERS = (int) Math.pow(2, 22);//(int) Math.pow(2, 3); // 16
     public static final byte NUM_TEST_CASES = 100;
 
     public static final boolean PRINT_ARR = false;
@@ -22,6 +23,7 @@ public class Driver {
         // generating test case files for consistent testing
 //        generateDoubleFiles();
 //        generateIntFiles();
+        System.out.println("Running " + NUM_TEST_CASES + " test cases with " + NUM_NUMBERS + " random unsorted numbers in array.");
 
         System.out.println("Running Random QS");
         for (int i = 0; i < NUM_TEST_CASES; i++) {
