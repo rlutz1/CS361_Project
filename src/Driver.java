@@ -10,7 +10,7 @@ public class Driver {
 
     public static final String FILE_NAME = "Integer_Unsorted_2^24"; // "Integer_Unsorted_2^30"; // playground
     public static final int NUM_NUMBERS = (int) Math.pow(2, 20);//(int) Math.pow(2, 3); // 16
-    public static final byte NUM_TEST_CASES = 20;
+    public static final byte NUM_TEST_CASES = 100;
 
     public static final boolean PRINT_ARR = false;
     public static final boolean LOG = true;
@@ -23,8 +23,28 @@ public class Driver {
 //        generateDoubleFiles();
 //        generateIntFiles();
 
+        System.out.println("Running Random QS");
         for (int i = 0; i < NUM_TEST_CASES; i++) {
             testRandomQS(NUM_NUMBERS);
+            System.out.println("Done: " + (i + 1));
+        }
+
+        System.out.println("Running Three Way MS");
+        for (int i = 0; i < NUM_TEST_CASES; i++) {
+            testThreeWayMS(NUM_NUMBERS);
+            System.out.println("Done: " + (i + 1));
+        }
+
+        System.out.println("Running Quad HS");
+        for (int i = 0; i < NUM_TEST_CASES; i++) {
+            testQuadHS(NUM_NUMBERS);
+            System.out.println("Done: " + (i + 1));
+        }
+
+        System.out.println("Running Tim Sort");
+        for (int i = 0; i < NUM_TEST_CASES; i++) {
+            testTimSort(NUM_NUMBERS);
+            System.out.println("Done: " + (i + 1));
         }
 
         // test int cases
@@ -41,17 +61,26 @@ public class Driver {
 
     } // end main method
 
-    public static void testTimSort() {
+    public static void testTimSort(int numNumbers) {
         TimSort ts = new TimSort();
-        ts.initArray(
-                "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
-                NUM_NUMBERS
-        );
-        ts.print(PRINT_ARR);
+//        ts.initArray(
+//                "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
+//                NUM_NUMBERS
+//        );
+
+        ts.initArray(numNumbers);
+//        ts.print(PRINT_ARR);
+
+        long startTime = System.nanoTime();
         ts.sort();
-        ts.print(PRINT_ARR);
-        System.out.println("Done.");
-        System.out.println("Sorted: " + ts.isSorted());
+        long endTime = System.nanoTime();
+
+        if (LOG)
+            logger.log("ts_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
+
+        if (!ts.isSorted()) {
+            throw new RuntimeException("Something wasn't sorted! " + " ts int " + numNumbers);
+        }
     }
 
     public static void testTimSortDouble() {
@@ -67,17 +96,26 @@ public class Driver {
         System.out.println("Sorted: " + ts.isSorted());
     }
 
-    public static void testQuadHS() {
+    public static void testQuadHS(int numNumbers) {
         QuadHeapSort qhs = new QuadHeapSort();
-        qhs.initArray(
-                "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
-                NUM_NUMBERS
-        );
-        qhs.print(PRINT_ARR);
-        qhs.sort(NUM_NUMBERS);
-        qhs.print(PRINT_ARR);
-        System.out.println("Done.");
-        System.out.println("Sorted: " + qhs.isSorted());
+//        qhs.initArray(
+//                "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
+//                NUM_NUMBERS
+//        );
+
+        qhs.initArray(numNumbers);
+//        qhs.print(PRINT_ARR);
+
+        long startTime = System.nanoTime();
+        qhs.sort(numNumbers);
+        long endTime = System.nanoTime();
+
+        if (LOG)
+            logger.log("qhs_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
+
+        if (!qhs.isSorted()) {
+            throw new RuntimeException("Something wasn't sorted! " + " qhs int " + numNumbers);
+        }
 
     }
 
@@ -102,18 +140,19 @@ public class Driver {
 //                NUM_NUMBERS
 //        );
 
-//        rqs.initArray((int) Math.pow(2, 20));
         rqs.initArray(numNumbers);
-        rqs.print(PRINT_ARR);
+//        rqs.print(PRINT_ARR);
 
         long startTime = System.nanoTime();
         rqs.sort(0,numNumbers - 1);
         long endTime = System.nanoTime();
 
-//        System.out.println("RQS Integer Done. Took " + ((endTime - startTime) / 1000000));  //divide by 1000000 to get MILLISECONDS.
-        logger.log("rqs_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
-        rqs.print(PRINT_ARR);
-        System.out.println("Sorted: " + rqs.isSorted());
+        if (LOG)
+            logger.log("rqs_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
+
+        if (!rqs.isSorted()) {
+            throw new RuntimeException("Something wasn't sorted! " + " rqs int " + numNumbers);
+        }
 
     }
 
@@ -131,17 +170,27 @@ public class Driver {
 
     }
 
-    public static void testThreeWayMS() {
+    public static void testThreeWayMS(int numNumbers) {
         ThreeWayMergeSort twms = new ThreeWayMergeSort();
-        twms.initArray(
-                "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
-                NUM_NUMBERS
-        );
-        twms.print(PRINT_ARR);
-        twms.sort(0, NUM_NUMBERS - 1);
-        twms.print(PRINT_ARR);
-        System.out.println("Done.");
-        System.out.println("Sorted: " + twms.isSorted());
+//        twms.initArray(
+//                "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
+//                NUM_NUMBERS
+//        );
+
+        twms.initArray(numNumbers);
+//        twms.print(PRINT_ARR);
+
+        long startTime = System.nanoTime();
+        twms.sort(0,numNumbers - 1);
+        long endTime = System.nanoTime();
+
+        if (LOG)
+            logger.log("twms_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
+
+        if (!twms.isSorted()) {
+            throw new RuntimeException("Something wasn't sorted! " + " twms int " + numNumbers);
+        }
+
     }
 
     public static void testThreeWayMSDouble() {

@@ -124,24 +124,24 @@ public class ThreeWayMergeSort {
         toSort[y] = temp;
     } // end method
 
-    /**
-     * method common to all sort classes to read in a test case file
-     * from basic java io operations.
-     * @param path file path given, will be ultimately from the command line/from driver
-     *             note that the test cases are all given as csv format
-     */
-    public void initArray(String path, int howMany) {
-        toSort = new short[howMany]; int counter = 0;
-        try {
-            Scanner s = new Scanner(new File(path)).useDelimiter(",");
-            while (s.hasNext()) {
-                toSort[counter] = s.nextShort(); counter++;
-            } // end loop
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("Oops, no file there. Love, mergesort.");
-        } // end try/catch
-
-    } // end method
+//    /**
+//     * method common to all sort classes to read in a test case file
+//     * from basic java io operations.
+//     * @param path file path given, will be ultimately from the command line/from driver
+//     *             note that the test cases are all given as csv format
+//     */
+//    public void initArray(String path, int howMany) {
+//        toSort = new short[howMany]; int counter = 0;
+//        try {
+//            Scanner s = new Scanner(new File(path)).useDelimiter(",");
+//            while (s.hasNext()) {
+//                toSort[counter] = s.nextShort(); counter++;
+//            } // end loop
+//        } catch (FileNotFoundException e) {
+//            throw new RuntimeException("Oops, no file there. Love, mergesort.");
+//        } // end try/catch
+//
+//    } // end method
 
 
     /**
@@ -154,7 +154,7 @@ public class ThreeWayMergeSort {
         Random rand = new Random();
 
         for (int i = 0; i < howMany; i++) {
-            toSort[i] = (short)rand.nextInt(-60000, 60000 + 1);
+            toSort[i] = (short)rand.nextInt();
         } // end loop
 
     } // end method
