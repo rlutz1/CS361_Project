@@ -49,18 +49,14 @@ public class TimSort {
      */
     public void sort() {
 
-        // todo: sitting to min run 16 for testing!
         // use insertion sort on smaller runs
         for (int i = 0; i < toSort.length; i += MIN_RUN) {
             insertionSort(i, Math.min(toSort.length - 1, i + MIN_RUN - 1));
         } // end loop
 
         for (int j = MIN_RUN; j < toSort.length; j *= 2) {
-
             for (int i = 0; i < toSort.length; i += 2 * j) {
-//                System.out.println(i + " " + (i + j - 1) + " " + (i + j) + " " + Math.min(toSort.length - 1, i + (2 * j) - 1));
                 merge(i, Math.min(toSort.length - 1, i + j - 1), i + j, Math.min(toSort.length - 1, i + (2 * j) - 1));
-//                print(true);
             }
         }
 
@@ -127,16 +123,8 @@ public class TimSort {
             temp[k] = toSort[j]; k++; j++;
         } // end while
 
-//        System.out.println("TEMP");
-//
-//        for (int num : temp) {
-//            System.out.print(num + " ");
-//        }
-//        System.out.println();
-
         for (i = startA, k = 0; i <= endB; i++, k++) {
             toSort[i] = temp[k];
-
         } // end loop
 
     } // end method

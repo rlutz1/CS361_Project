@@ -54,17 +54,18 @@ public class ThreeWayMergeSort {
 
 //        merge (low, low + third, low + third + 1, high - third);
 //        merge (low, high - third, high - third + 1, high);
-
-        copyIn (
-                merge (low, low + third, low + third + 1, high - third),
-                low,
-                high - third
-        );
-        copyIn (
-                merge (low, high - third, high - third + 1, high),
-                low,
-                high
-        );
+        merge (low, low + third, low + third + 1, high - third);
+//        copyIn (
+//                merge (low, low + third, low + third + 1, high - third),
+//                low,
+//                high - third
+//        );
+        merge (low, high - third, high - third + 1, high);
+//        copyIn (
+//                merge (low, high - third, high - third + 1, high),
+//                low,
+//                high
+//        );
 //        print(true);
     }
 
@@ -76,7 +77,7 @@ public class ThreeWayMergeSort {
      * @param endB
      * @return
      */
-    private short[] merge(int startA, int endA, int startB, int endB) {
+    private void merge(int startA, int endA, int startB, int endB) {
         int i = startA, j = startB, k = 0;
         short[] temp = new short[endB - startA + 1];
 
@@ -100,7 +101,11 @@ public class ThreeWayMergeSort {
             temp[k] = toSort[j]; k++; j++;
         } // end while
 
-        return temp;
+        for (i = startA, k = 0; i <= endB; i++, k++) {
+            toSort[i] = temp[k];
+        } // end loop
+
+//        return temp;
 
     } // end method
 

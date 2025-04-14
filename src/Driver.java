@@ -8,15 +8,15 @@ import IntSort.TimSort;
 
 public class Driver {
 
-    public static final String FILE_NAME = "Integer_Unsorted_2^24"; // "Integer_Unsorted_2^30"; // playground
+    public static final Log logger = new Log();
 
-    public static final int NUM_NUMBERS = (int) Math.pow(2, 22);//(int) Math.pow(2, 3); // 16
+    public static final int NUM_NUMBERS = (int) Math.pow(2, 24);//(int) Math.pow(2, 3); // 16
     public static final byte NUM_TEST_CASES = 100;
-
-    public static final boolean PRINT_ARR = false;
     public static final boolean LOG = true;
 
-    public static final Log logger = new Log();
+
+    public static final boolean PRINT_ARR = false;
+    public static final String FILE_NAME = "Integer_Unsorted_2^24"; // "Integer_Unsorted_2^30"; // playground
 
 
     public static void main(String[] args) {
