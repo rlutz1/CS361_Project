@@ -10,8 +10,8 @@ public class Driver {
 
     public static final Log logger = new Log();
 
-    public static final int NUM_NUMBERS = (int) Math.pow(2, 24);//(int) Math.pow(2, 3); // 16
-    public static final byte NUM_TEST_CASES = 100;
+    public static final int NUM_NUMBERS = (int) Math.pow(2, 25);//(int) Math.pow(2, 3); // 16
+    public static final short NUM_TEST_CASES = 10;
     public static final boolean LOG = true;
 
 
@@ -25,29 +25,35 @@ public class Driver {
 //        generateIntFiles();
         System.out.println("Running " + NUM_TEST_CASES + " test cases with " + NUM_NUMBERS + " random unsorted numbers in array.");
 
-        System.out.println("Running Random QS");
-        for (int i = 0; i < NUM_TEST_CASES; i++) {
-            testRandomQS(NUM_NUMBERS);
-            System.out.println("Done: " + (i + 1));
+        for (int j = 30; j < 31; j++) {
+            int num_numbers = (int) Math.pow(2, j);
+
+            System.out.println("Running Random QS");
+            for (int i = 0; i < NUM_TEST_CASES; i++) {
+                testRandomQS(num_numbers);
+                System.out.println("Done: " + (i + 1));
+            }
+
+            System.out.println("Running Three Way MS");
+            for (int i = 0; i < NUM_TEST_CASES; i++) {
+                testThreeWayMS(num_numbers);
+                System.out.println("Done: " + (i + 1));
+            }
+
+            System.out.println("Running Quad HS");
+            for (int i = 0; i < NUM_TEST_CASES; i++) {
+                testQuadHS(num_numbers);
+                System.out.println("Done: " + (i + 1));
+            }
+
+            System.out.println("Running Tim Sort");
+            for (int i = 0; i < NUM_TEST_CASES; i++) {
+                testTimSort(num_numbers);
+                System.out.println("Done: " + (i + 1));
+            }
         }
 
-        System.out.println("Running Three Way MS");
-        for (int i = 0; i < NUM_TEST_CASES; i++) {
-            testThreeWayMS(NUM_NUMBERS);
-            System.out.println("Done: " + (i + 1));
-        }
 
-        System.out.println("Running Quad HS");
-        for (int i = 0; i < NUM_TEST_CASES; i++) {
-            testQuadHS(NUM_NUMBERS);
-            System.out.println("Done: " + (i + 1));
-        }
-
-        System.out.println("Running Tim Sort");
-        for (int i = 0; i < NUM_TEST_CASES; i++) {
-            testTimSort(NUM_NUMBERS);
-            System.out.println("Done: " + (i + 1));
-        }
 
         // test int cases
 //        testThreeWayMS();
