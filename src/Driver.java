@@ -28,17 +28,17 @@ public class Driver {
         for (int j = 30; j < 31; j++) {
             int num_numbers = (int) Math.pow(2, j);
 
-            System.out.println("Running Random QS");
-            for (int i = 0; i < NUM_TEST_CASES; i++) {
-                testRandomQS(num_numbers);
-                System.out.println("Done: " + (i + 1));
-            }
-
-            System.out.println("Running Three Way MS");
-            for (int i = 0; i < NUM_TEST_CASES; i++) {
-                testThreeWayMS(num_numbers);
-                System.out.println("Done: " + (i + 1));
-            }
+//            System.out.println("Running Random QS");
+//            for (int i = 0; i < NUM_TEST_CASES; i++) {
+//                testRandomQS(num_numbers);
+//                System.out.println("Done: " + (i + 1));
+//            }
+//
+//            System.out.println("Running Three Way MS");
+//            for (int i = 0; i < NUM_TEST_CASES; i++) {
+//                testThreeWayMS(num_numbers);
+//                System.out.println("Done: " + (i + 1));
+//            }
 
             System.out.println("Running Quad HS");
             for (int i = 0; i < NUM_TEST_CASES; i++) {
