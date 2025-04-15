@@ -41,8 +41,12 @@ public class ThreeWayMergeSort {
      */
 
 
+    /**
+     * the sort method of three way mergesort.
+     * @param low start index
+     * @param high end index
+     */
     public void sort(int low, int high) {
-//        System.out.println("low " + low + " high " + high);
         if (low >= high) { return; }
         if (high - low == 1) { swapIfNeeded(low, high); return;}
 
@@ -52,38 +56,25 @@ public class ThreeWayMergeSort {
         sort (low + third + 1, high - third);
         sort (high - third + 1, high);
 
-//        merge (low, low + third, low + third + 1, high - third);
-//        merge (low, high - third, high - third + 1, high);
         merge (low, low + third, low + third + 1, high - third);
-//        copyIn (
-//                merge (low, low + third, low + third + 1, high - third),
-//                low,
-//                high - third
-//        );
         merge (low, high - third, high - third + 1, high);
-//        copyIn (
-//                merge (low, high - third, high - third + 1, high),
-//                low,
-//                high
-//        );
-//        print(true);
-    }
+    } // end method
 
     /**
-     * todo: issue with memory on my machine with 2^30 case.
-     * @param startA
-     * @param endA
-     * @param startB
-     * @param endB
-     * @return
+     * merge method to take two starts, two ends, and merge the two
+     * sorted sections into a temporary array,
+     * which is then copied into the final array.
+     * @param startA given first starting index
+     * @param endA given first ending index
+     * @param startB given second starting index
+     * @param endB given second ending index
      */
     private void merge(int startA, int endA, int startB, int endB) {
         int i = startA, j = startB, k = 0;
         short[] temp = new short[endB - startA + 1];
 
-
+        // merge the two sorted lists into the temporary array
         while (i <= endA && j <= endB) {
-//            System.out.println("while1");
             if (toSort[i] > toSort[j]) {
                 temp[k] = toSort[j]; k++; j++;
             } else {
@@ -91,38 +82,38 @@ public class ThreeWayMergeSort {
             } // end if
         } // end loop
 
+        // dump the contents of array 1 if needed
         while (i <= endA) {
-//            System.out.println("while2");
             temp[k] = toSort[i]; k++; i++;
         } // end while
 
+        // dump the contents of array 2 if needed
         while (j <= endB) {
-//            System.out.println("while3");
             temp[k] = toSort[j]; k++; j++;
         } // end while
 
+        // copy the temporary array's merged contents into the global
         for (i = startA, k = 0; i <= endB; i++, k++) {
             toSort[i] = temp[k];
         } // end loop
-
-//        return temp;
-
     } // end method
 
-
-    private void copyIn(short[] temp, int start, int end) {
-        for (int i = start, j = 0; i <= end; i++, j++) {
-            toSort[i] = temp[j];
-        } // end loop
-    } // end method
-
+    /**
+     * only swap 2 values if they are not in ascending order.
+     * @param low first index
+     * @param high second index
+     */
     private void swapIfNeeded(int low, int high) {
         if (toSort[low] > toSort[high])  {
             swap(low, high);
         } // end if
     } // end method
 
-
+    /**
+     * straight forward utility swap method
+     * @param x first element to swap
+     * @param y second element to swap
+     */
     private void swap(int x, int y) {
         short temp = toSort[x];
         toSort[x] = toSort[y];

@@ -10,15 +10,19 @@ Default heap size command:
 + run and don't use computer for anything else
 + let's get at least 100 runs for each case. take weekend time to run for the large inputs.
 + this will clarify all final needs when running all of them. -- document 
++ try QHS with ints. it should work. note any changes in performance
+  + on that note, keep testing it, limit of < 2^29 should be fine but i clearly had a reason at the time for 2^28 so SUSPICIOUS
++ is math.pow an issue? if so: for loop it up
++ implement min in timsort.
 
 
 ## Notes
 + all of them: implement as short[], int[] would take more careful planning because of memory issues.
 + *mergesort*: 
-  + progress: i can increase my jvm heapsize to ~6gb (maybe less for short, unsure yet), and we can sort the 2^30! so, time to ask humayra about this issue tomorrow 4/8 because unclear if that's acceptable or not. need to discuss the same problem with the doubles/floats bc floats are a min 32 bits, and that will cause issues.
-  + but, i can at least be testing, the more pertinent question is what on earth is going on with whoever would be testing it.
-  + yup, crashed with 10g in heap. jesus. definitely going to have to talk with her on this. best case, i may be able to downgrade to 32 bit floats and have the heap up high enough. ~~running with the doubles now. likely going to be a big problem there and will HAVE to downgrade to floats.~~
-    + ~~we have an issue with 2^30 and getting memory space for the merge. temp arrays WILL NOT cut it with that size. consider special case for in place merging OR other options. check on this and see if the rabbit hole is worth it. 2^29 works just fine, takes ~60 seconds from first run.~~
+  + ~~progress: i can increase my jvm heapsize to abt 6gb (maybe less for short, unsure yet), and we can sort the 2^30! so, time to ask humayra about this issue tomorrow 4/8 because unclear if that's acceptable or not. need to discuss the same problem with the doubles/floats bc floats are a min 32 bits, and that will cause issues.~~
+    + ~~but, i can at least be testing, the more pertinent question is what on earth is going on with whoever would be testing it.~~
+    + ~~yup, crashed with 10g in heap. jesus. definitely going to have to talk with her on this. best case, i may be able to downgrade to 32 bit floats and have the heap up high enough.~~ ~~running with the doubles now. likely going to be a big problem there and will HAVE to downgrade to floats.~~
+      + ~~we have an issue with 2^30 and getting memory space for the merge. temp arrays WILL NOT cut it with that size. consider special case for in place merging OR other options. check on this and see if the rabbit hole is worth it. 2^29 works just fine, takes ~60 seconds from first run.~~~~
 + *quicksort*: 
   + QS update: changed the range to ints (need to set vm to -Xmx6g to load 2^30 ints into ram, but otherwise fine.) noticed that the range of numbers needs to be higher. the duplicates in the small range was causing the stack over flow and instituting the worst case scenario (each sub prob turned into n - 1 in size instead of n/2)
     + also try on a different machine.

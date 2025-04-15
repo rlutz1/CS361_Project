@@ -1,9 +1,6 @@
 package IntSort;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Random;
-import java.util.Scanner;
 
 /**
  * Tim sort: Tim sort is a hybrid sorting algorithm derived from merge sort
@@ -54,14 +51,12 @@ public class TimSort {
             insertionSort(i, Math.min(toSort.length - 1, i + MIN_RUN - 1));
         } // end loop
 
+        // merge the sub runs, increasing the sub run length with each iteration
         for (int j = MIN_RUN; j < toSort.length; j *= 2) {
             for (int i = 0; i < toSort.length; i += 2 * j) {
                 merge(i, Math.min(toSort.length - 1, i + j - 1), i + j, Math.min(toSort.length - 1, i + (2 * j) - 1));
-            }
-        }
-
-
-
+            } // end loop
+        } // end loop
 
     } // end method
 
@@ -72,19 +67,18 @@ public class TimSort {
      * @param high
      */
     private void insertionSort(int low, int high) {
-        int j;
+        int j; short temp;
         for (int i = low; i < high; i++) { // for every element of the list
 
-            if (toSort[i + 1] < toSort[i]) {
-                j = i;
-                short temp = toSort[i + 1];
-                while (j >= low && toSort[j] > temp) {
-                    toSort[j + 1] = toSort[j];
+            if (toSort[i + 1] < toSort[i]) { // if we find a smaller element ahead
+                j = i; // bookmark
+                temp = toSort[i + 1]; // grab the element to "insert"
+                while (j >= low && toSort[j] > temp) { // until we hit end or something smaller
+                    toSort[j + 1] = toSort[j]; // make space
                     j--;
                 } // end loop
-                toSort[j + 1] = temp;
+                toSort[j + 1] = temp; // insert element in correct spot
             } // end if
-//            print(true);
         } // end loop
 
     } // end method
@@ -100,18 +94,15 @@ public class TimSort {
      * @return
      */
     private void merge(int startA, int endA, int startB, int endB) {
-//        System.out.println(endA + " " + endB);
         int i = startA, j = startB, k = 0;
         short[] temp = new short[endB - startA + 1];
 
 
         while (i <= endA && j <= endB) {
-//            System.out.println("um");
             if (toSort[i] > toSort[j]) {
                 temp[k] = toSort[j]; k++; j++;
             } else {
                 temp[k] = toSort[i]; k++; i++;
-//                System.out.println("?????");
             } // end if
         } // end loop
 

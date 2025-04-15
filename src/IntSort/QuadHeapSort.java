@@ -1,9 +1,6 @@
 package IntSort;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Random;
-import java.util.Scanner;
 
 /**
  * Sorting using a quad heap: You will be implementing a modified heap
@@ -22,7 +19,7 @@ public class QuadHeapSort {
      */
 
 
-    private short[] toSort = null;
+    private int[] toSort = null;
 
 
     /*
@@ -40,52 +37,68 @@ public class QuadHeapSort {
      * =============================================================
      */
 
-// Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index -27 out of bounds for length 1073741824
+    /**
+     * main sorting method utilizing a quad heap.
+     * @param size size of the heap
+     */
     public void sort(int size) {
-//        int size = toSort.length;
 
+        // assume array is a heap and heapify starting from last parent
         for (int i = (size - 2) / 4; i >= 0; i--) {
             maxHeapify(i, size);
         } // end loop
 
+        // move max to the end, fix heap violations from root down to last leaf
         for (int i = size - 1; i >= 0; i--) {
             swap(0, i);
             maxHeapify(0, i);
         } // end loop
+
     } // end method
 
 
+    /**
+     * method to heapify the quad heap.
+     * now each node will have 4 children to consider instead of
+     * typical 2 of the binary heap.
+     * swap the max to the top as needed, and then fix the subtree
+     * as needed.
+     * @param start starting point to heapify
+     * @param end ending point to stop at
+     */
     public void maxHeapify(int start, int end) {
-        if (start < (int) Math.pow(2,28)) { // limit to note
+        if (start < (int) Math.pow(2,29)) { // limit to note
+            // grab all 4 children
             int child1 = 4 * start + 1;
             int child2 = 4 * start + 2;
             int child3 = 4 * start + 3;
             int child4 = 4 * start + 4;
             int max = start;
 
-            if (child1 < end && toSort[child1] > toSort[max]) { // todo iterative loop
+            // find the max of the parent and children
+            if (child1 < end && toSort[child1] > toSort[max]) {
                 max = child1;
-            }
+            } // end if
 
             if (child2 < end && toSort[child2] > toSort[max]) {
                 max = child2;
-            }
+            } // end if
 
             if (child3 < end && toSort[child3] > toSort[max]) {
                 max = child3;
-            }
+            } // end if
 
             if (child4 < end && toSort[child4] > toSort[max]) {
                 max = child4;
-            }
+            } // end if
 
+            // if we found a new maximum
             if (max != start) {
-                swap(start, max);
-                maxHeapify(max, end);
-            }
-        }
-
-    }
+                swap(start, max); // ensure max is the parent node
+                maxHeapify(max, end); // fix the subtree as needed
+            } // end if
+        } // end if
+    } // end method
 
     /**
      * general method to swap something in our list.
@@ -94,7 +107,7 @@ public class QuadHeapSort {
      * @param y item to swap
      */
     private void swap(int x, int y) {
-        short temp = toSort[x];
+        int temp = toSort[x];
         toSort[x] = toSort[y];
         toSort[y] = temp;
     } // end method
@@ -137,12 +150,12 @@ public class QuadHeapSort {
      * from basic java io operations.
      */
     public void initArray(int howMany) {
-        toSort = new short[howMany];
+        toSort = new int[howMany];
 
         Random rand = new Random();
 
         for (int i = 0; i < howMany; i++) {
-            toSort[i] = (short)rand.nextInt();
+            toSort[i] = rand.nextInt();
         } // end loop
 
     } // end method
@@ -173,7 +186,7 @@ public class QuadHeapSort {
      * =============================================================
      */
 
-    public short[] getToSort() {
+    public int[] getToSort() {
         return toSort;
     } // end getter
 }

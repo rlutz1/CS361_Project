@@ -50,9 +50,9 @@ public class RandomizedQuickSort {
      */
     public void sort(int low, int high) {
         if (low < high) {
-            int pivot = partition(low, high);
-            sort(low, pivot - 1);
-            sort(pivot + 1, high);
+            int pivot = partition(low, high); // parition and return pivot
+            sort(low, pivot - 1); // sort first half
+            sort(pivot + 1, high); // sort second half
         } // end if
     } // end method
 
@@ -66,9 +66,10 @@ public class RandomizedQuickSort {
      * @return
      */
     private int partition(int start, int end) {
-        swap(getRandomPivot(start, end), end);
-        int b = start - 1, t = start;
+        swap(getRandomPivot(start, end), end); // get a random pivot choice
+        int b = start - 1, t = start; // set up bookmark and traveller
 
+        // place all nums smaller than pivot left of b, all things bigger right of b
         while (t < end) {
             if (toSort[t] < toSort[end]) {
                 b++;
@@ -77,12 +78,13 @@ public class RandomizedQuickSort {
             t++;
         } // end loop
 
+        // if the bookmark is not at the end of this subarray
         if (b < end) {
             swap(b + 1, end);
         } // end if
 
-        return b + 1;
-    } // end if
+        return b + 1; // return the pivot
+    } // end method
 
     /**
      * simple utility method to get a randomized index pivot choice for the

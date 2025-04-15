@@ -12,7 +12,7 @@ public class Driver {
 
     public static final int NUM_NUMBERS = (int) Math.pow(2, 25);//(int) Math.pow(2, 3); // 16
     public static final short NUM_TEST_CASES = 10;
-    public static final boolean LOG = true;
+    public static final boolean LOG = false;
 
 
     public static final boolean PRINT_ARR = false;
@@ -24,34 +24,37 @@ public class Driver {
 //        generateDoubleFiles();
 //        generateIntFiles();
         System.out.println("Running " + NUM_TEST_CASES + " test cases with " + NUM_NUMBERS + " random unsorted numbers in array.");
+//        testThreeWayMS(50);
+//        testQuadHS((int) Math.pow(2, 30));
+        System.out.println((int) Math.pow(2, 31) +1);
 
-        for (int j = 30; j < 31; j++) {
-            int num_numbers = (int) Math.pow(2, j);
-
-//            System.out.println("Running Random QS");
+//        for (int j = 30; j < 31; j++) {
+//            int num_numbers = (int) Math.pow(2, j);
+//
+////            System.out.println("Running Random QS");
+////            for (int i = 0; i < NUM_TEST_CASES; i++) {
+////                testRandomQS(num_numbers);
+////                System.out.println("Done: " + (i + 1));
+////            }
+////
+////            System.out.println("Running Three Way MS");
+////            for (int i = 0; i < NUM_TEST_CASES; i++) {
+////                testThreeWayMS(num_numbers);
+////                System.out.println("Done: " + (i + 1));
+////            }
+//
+//            System.out.println("Running Quad HS");
 //            for (int i = 0; i < NUM_TEST_CASES; i++) {
-//                testRandomQS(num_numbers);
+//                testQuadHS(num_numbers);
 //                System.out.println("Done: " + (i + 1));
 //            }
 //
-//            System.out.println("Running Three Way MS");
+//            System.out.println("Running Tim Sort");
 //            for (int i = 0; i < NUM_TEST_CASES; i++) {
-//                testThreeWayMS(num_numbers);
+//                testTimSort(num_numbers);
 //                System.out.println("Done: " + (i + 1));
 //            }
-
-            System.out.println("Running Quad HS");
-            for (int i = 0; i < NUM_TEST_CASES; i++) {
-                testQuadHS(num_numbers);
-                System.out.println("Done: " + (i + 1));
-            }
-
-            System.out.println("Running Tim Sort");
-            for (int i = 0; i < NUM_TEST_CASES; i++) {
-                testTimSort(num_numbers);
-                System.out.println("Done: " + (i + 1));
-            }
-        }
+//        }
 
 
 
@@ -186,11 +189,14 @@ public class Driver {
 //        );
 
         twms.initArray(numNumbers);
-//        twms.print(PRINT_ARR);
+        twms.print(true);
 
         long startTime = System.nanoTime();
         twms.sort(0,numNumbers - 1);
         long endTime = System.nanoTime();
+
+        twms.print(true);
+        System.out.println((endTime - startTime) / 1000000);
 
         if (LOG)
             logger.log("twms_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
