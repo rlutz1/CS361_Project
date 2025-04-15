@@ -1,6 +1,7 @@
 import DoubleSort.QuadHeapSortDouble;
 import DoubleSort.RandomizedQuickSortDouble;
 import DoubleSort.TimSortDouble;
+import DoubleSort.ThreeWayMergeSortDouble;
 import IntSort.QuadHeapSort;
 import IntSort.RandomizedQuickSort;
 import IntSort.ThreeWayMergeSort;
@@ -26,7 +27,9 @@ public class Driver {
         System.out.println("Running " + NUM_TEST_CASES + " test cases with " + NUM_NUMBERS + " random unsorted numbers in array.");
 //        testThreeWayMS(50);
 //        testQuadHS((int) Math.pow(2, 30));
-        System.out.println((int) Math.pow(2, 31) +1);
+//        System.out.println((int) Math.pow(2, 31) +1);
+
+        testThreeWayMSDouble((int) Math.pow(2, 30));
 
 //        for (int j = 30; j < 31; j++) {
 //            int num_numbers = (int) Math.pow(2, j);
@@ -189,14 +192,10 @@ public class Driver {
 //        );
 
         twms.initArray(numNumbers);
-        twms.print(true);
 
         long startTime = System.nanoTime();
         twms.sort(0,numNumbers - 1);
         long endTime = System.nanoTime();
-
-        twms.print(true);
-        System.out.println((endTime - startTime) / 1000000);
 
         if (LOG)
             logger.log("twms_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
@@ -207,17 +206,22 @@ public class Driver {
 
     }
 
-    public static void testThreeWayMSDouble() {
+    public static void testThreeWayMSDouble(int numNumbers) {
         ThreeWayMergeSortDouble twms = new ThreeWayMergeSortDouble();
-        twms.initArray(
-                "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
-                NUM_NUMBERS
-        );
-        twms.print(PRINT_ARR);
-        twms.sort(0, NUM_NUMBERS - 1);
-        twms.print(PRINT_ARR);
-        System.out.println("Done.");
-        System.out.println("Sorted: " + twms.isSorted());
+
+        twms.initArray(numNumbers);
+
+//        twms.print(true);
+        long startTime = System.nanoTime();
+        twms.sort(0,numNumbers - 1);
+        long endTime = System.nanoTime();
+//        twms.print(true);
+
+        if (!twms.isSorted())
+            throw new RuntimeException("Something wasn't sorted! " + " twms double " + numNumbers);
+
+        if (LOG)
+            logger.log("twms_double_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
     }
 
     /**

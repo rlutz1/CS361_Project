@@ -2,6 +2,7 @@ package DoubleSort;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -23,7 +24,7 @@ public class ThreeWayMergeSortDouble {
      * =============================================================
      */
 
-    private double[] toSort = null;
+    private float[] toSort = null;
 
 
     /*
@@ -77,9 +78,9 @@ public class ThreeWayMergeSortDouble {
      * @param endB
      * @return
      */
-    private double[] merge(int startA, int endA, int startB, int endB) {
+    private float[] merge(int startA, int endA, int startB, int endB) {
         int i = startA, j = startB, k = 0;
-        double[] temp = new double[endB - startA + 1];
+        float[] temp = new float[endB - startA + 1];
 
 
         while (i <= endA && j <= endB) {
@@ -106,7 +107,7 @@ public class ThreeWayMergeSortDouble {
     } // end method
 
 
-    private void copyIn(double[] temp, int start, int end) {
+    private void copyIn(float[] temp, int start, int end) {
         for (int i = start, j = 0; i <= end; i++, j++) {
             toSort[i] = temp[j];
         } // end loop
@@ -120,27 +121,24 @@ public class ThreeWayMergeSortDouble {
 
 
     private void swap(int x, int y) {
-        double temp = toSort[x];
+        float temp = toSort[x];
         toSort[x] = toSort[y];
         toSort[y] = temp;
     } // end method
 
+
     /**
-     * method common to all sort classes to read in a test case file
+     * gen a random test case
      * from basic java io operations.
-     * @param path file path given, will be ultimately from the command line/from driver
-     *             note that the test cases are all given as csv format
      */
-    public void initArray(String path, int howMany) {
-        toSort = new double[howMany]; int counter = 0;
-        try {
-            Scanner s = new Scanner(new File(path)).useDelimiter(",");
-            while (s.hasNext()) {
-                toSort[counter] = s.nextDouble(); counter++;
-            } // end loop
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("Oops, no file there. Love, mergesort.");
-        } // end try/catch
+    public void initArray(int howMany) {
+        toSort = new float[howMany];
+
+        Random rand = new Random();
+
+        for (int i = 0; i < howMany; i++) {
+            toSort[i] = (float) rand.nextDouble();
+        } // end loop
 
     } // end method
 
@@ -181,7 +179,7 @@ public class ThreeWayMergeSortDouble {
      * =============================================================
      */
 
-    public double[] getToSort() {
+    public float[] getToSort() {
         return toSort;
     } // end getter
 
