@@ -22,8 +22,14 @@ public class RandomizedQuickSortDouble {
      * =============================================================
      */
 
-    private double[] toSort = null;
-
+    private float[] toSort = null;
+    //    private short[] toSort = {
+//            2, 5, 2, 2,
+//        7, 2, 5, 2,
+//        4, 2, 2, 2,
+//        8, 10, 2, 9
+//};
+    private Random random = new Random();
 
     /*
      * =============================================================
@@ -43,10 +49,11 @@ public class RandomizedQuickSortDouble {
      * method to sort the array utilizing randomized quick sort.
      */
     public void sort(int low, int high) {
-        if (low >= high) { return; }
-        int pivot = partition(low, high);
-        sort(low, pivot - 1);
-        sort(pivot + 1, high);
+        if (low < high) {
+            int pivot = partition(low, high); // parition and return pivot
+            sort(low, pivot - 1); // sort first half
+            sort(pivot + 1, high); // sort second half
+        } // end if
     } // end method
 
     /**
@@ -59,34 +66,25 @@ public class RandomizedQuickSortDouble {
      * @return
      */
     private int partition(int start, int end) {
-//        if (start == 0) {
-//            System.out.println("start:  " + start + "  end:  " + end);
-//        }
+        swap(getRandomPivot(start, end), end); // get a random pivot choice
+        int b = start - 1, t = start; // set up bookmark and traveller
 
-        int randPivot = getRandomPivot(start, end);
-        swap(randPivot, end);
-//        System.out.println("Random pivot: " + randPivot);
-//        print(true);
-        int b = start - 1, t = start;
-
+        // place all nums smaller than pivot left of b, all things bigger right of b
         while (t < end) {
             if (toSort[t] < toSort[end]) {
-                swap(t, b + 1);
                 b++;
+                swap(t, b);
             } //end if
             t++;
         } // end loop
 
+        // if the bookmark is not at the end of this subarray
         if (b < end) {
             swap(b + 1, end);
         } // end if
 
-//        System.out.println("Done partioning: ");
-//        print(true);
-
-        return b + 1;
-
-    } // end if
+        return b + 1; // return the pivot
+    } // end method
 
     /**
      * simple utility method to get a randomized index pivot choice for the
@@ -96,7 +94,6 @@ public class RandomizedQuickSortDouble {
      * @return a random pivot index
      */
     private int getRandomPivot(int low, int high) {
-        Random random = new Random();
         return random.nextInt(low, high + 1);
     } // end method
 
@@ -107,7 +104,7 @@ public class RandomizedQuickSortDouble {
      * @param y item to swap
      */
     private void swap(int x, int y) {
-        double temp = toSort[x];
+        float temp = toSort[x];
         toSort[x] = toSort[y];
         toSort[y] = temp;
     } // end method
@@ -117,12 +114,11 @@ public class RandomizedQuickSortDouble {
      */
     public void print(boolean printNums) {
         if (printNums) {
-            for (double num : toSort) {
+            for (float num : toSort) {
                 System.out.print(num + " ");
             } // end loop
+            System.out.println("Found " + toSort.length + " numbers.");
         } // end if
-
-        System.out.println("Found " + toSort.length + " numbers.");
     } // end method
 
     /**
@@ -131,16 +127,33 @@ public class RandomizedQuickSortDouble {
      * @param path file path given, will be ultimately from the command line/from driver
      *             note that the test cases are all given as csv format
      */
-    public void initArray(String path, int howMany) {
-        toSort = new double[howMany]; int counter = 0;
-        try {
-            Scanner s = new Scanner(new File(path)).useDelimiter(",");
-            while (s.hasNext()) {
-                toSort[counter] = s.nextDouble(); counter++;
-            } // end loop
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("Oops, no file there. Love, mergesort.");
-        } // end try/catch
+//    public void initArray(String path, int howMany) {
+//        toSort = new int[howMany]; int counter = 0;
+//        try {
+//            Scanner s = new Scanner(new File(path)).useDelimiter(",");
+//            while (s.hasNext()) {
+//                toSort[counter] = s.nextInt(); counter++;
+//            } // end loop
+//        } catch (FileNotFoundException e) {
+//            throw new RuntimeException("Oops, no file there. Love, mergesort.");
+//        } // end try/catch
+//
+//    } // end method
+
+    /**
+     * gen a random test case
+     * from basic java io operations.
+     */
+    public void initArray(int howMany) {
+        toSort = new float[howMany];
+
+        Random rand = new Random();
+        byte flipFlop = 1;
+
+        for (int i = 0; i < howMany; i++) {
+            toSort[i] = rand.nextFloat() * 1000000 * flipFlop;
+            if (i % 2 == 1) {flipFlop = -1;} else {flipFlop = 1;}
+        } // end loop
 
     } // end method
 
@@ -169,7 +182,7 @@ public class RandomizedQuickSortDouble {
      * =============================================================
      */
 
-    public double[] getToSort(){
+    public float[] getToSort(){
         return toSort;
     } // end getter
 

@@ -1,8 +1,6 @@
 package DoubleSort;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.util.Random;
 
 /**
  * Sorting using a quad heap: You will be implementing a modified heap
@@ -21,7 +19,7 @@ public class QuadHeapSortDouble {
      */
 
 
-    private double[] toSort = null;
+    private float[] toSort = null;
 
 
     /*
@@ -39,52 +37,68 @@ public class QuadHeapSortDouble {
      * =============================================================
      */
 
-    // Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index -27 out of bounds for length 1073741824
+    /**
+     * main sorting method utilizing a quad heap.
+     * @param size size of the heap
+     */
     public void sort(int size) {
-//        int size = toSort.length;
 
+        // assume array is a heap and heapify starting from last parent
         for (int i = (size - 2) / 4; i >= 0; i--) {
             maxHeapify(i, size);
         } // end loop
 
+        // move max to the end, fix heap violations from root down to last leaf
         for (int i = size - 1; i >= 0; i--) {
             swap(0, i);
             maxHeapify(0, i);
         } // end loop
+
     } // end method
 
 
+    /**
+     * method to heapify the quad heap.
+     * now each node will have 4 children to consider instead of
+     * typical 2 of the binary heap.
+     * swap the max to the top as needed, and then fix the subtree
+     * as needed.
+     * @param start starting point to heapify
+     * @param end ending point to stop at
+     */
     public void maxHeapify(int start, int end) {
-        if (start < (int) Math.pow(2,28)) { // limit to note
+        if (start < (int) Math.pow(2,29)) { // limit to note
+            // grab all 4 children
             int child1 = 4 * start + 1;
             int child2 = 4 * start + 2;
             int child3 = 4 * start + 3;
             int child4 = 4 * start + 4;
             int max = start;
 
-            if (child1 < end && toSort[child1] > toSort[max]) { // todo iterative loop
+            // find the max of the parent and children
+            if (child1 < end && toSort[child1] > toSort[max]) {
                 max = child1;
-            }
+            } // end if
 
             if (child2 < end && toSort[child2] > toSort[max]) {
                 max = child2;
-            }
+            } // end if
 
             if (child3 < end && toSort[child3] > toSort[max]) {
                 max = child3;
-            }
+            } // end if
 
             if (child4 < end && toSort[child4] > toSort[max]) {
                 max = child4;
-            }
+            } // end if
 
+            // if we found a new maximum
             if (max != start) {
-                swap(start, max);
-                maxHeapify(max, end);
-            }
-        }
-
-    }
+                swap(start, max); // ensure max is the parent node
+                maxHeapify(max, end); // fix the subtree as needed
+            } // end if
+        } // end if
+    } // end method
 
     /**
      * general method to swap something in our list.
@@ -93,7 +107,7 @@ public class QuadHeapSortDouble {
      * @param y item to swap
      */
     private void swap(int x, int y) {
-        double temp = toSort[x];
+        float temp = toSort[x];
         toSort[x] = toSort[y];
         toSort[y] = temp;
     } // end method
@@ -103,30 +117,47 @@ public class QuadHeapSortDouble {
      */
     public void print(boolean printNums) {
         if (printNums) {
-            for (double num : toSort) {
+            for (float num : toSort) {
                 System.out.print(num + " ");
             } // end loop
+            System.out.println("Found " + toSort.length + " numbers.");
         } // end if
-
-        System.out.println("Found " + toSort.length + " numbers.");
     } // end method
 
+//    /**
+//     * method common to all sort classes to read in a test case file
+//     * from basic java io operations.
+//     * @param path file path given, will be ultimately from the command line/from driver
+//     *             note that the test cases are all given as csv format
+//     */
+//    public void initArray(String path, int howMany) {
+//        toSort = new short[howMany]; int counter = 0;
+//        try {
+//            Scanner s = new Scanner(new File(path)).useDelimiter(",");
+//            while (s.hasNext()) {
+//                toSort[counter] = s.nextShort(); counter++;
+//            } // end loop
+//        } catch (FileNotFoundException e) {
+//            throw new RuntimeException("Oops, no file there. Love, mergesort.");
+//        } // end try/catch
+//
+//    } // end method
+
+
     /**
-     * method common to all sort classes to read in a test case file
+     * gen a random test case
      * from basic java io operations.
-     * @param path file path given, will be ultimately from the command line/from driver
-     *             note that the test cases are all given as csv format
      */
-    public void initArray(String path, int howMany) {
-        toSort = new double[howMany]; int counter = 0;
-        try {
-            Scanner s = new Scanner(new File(path)).useDelimiter(",");
-            while (s.hasNext()) {
-                toSort[counter] = s.nextDouble(); counter++;
-            } // end loop
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("Oops, no file there. Love, mergesort.");
-        } // end try/catch
+    public void initArray(int howMany) {
+        toSort = new float[howMany];
+
+        Random rand = new Random();
+        byte flipFlop = 1;
+
+        for (int i = 0; i < howMany; i++) {
+            toSort[i] = rand.nextFloat() * 1000000 * flipFlop;
+            if (i % 2 == 1) {flipFlop = -1;} else {flipFlop = 1;}
+        } // end loop
 
     } // end method
 
@@ -156,7 +187,7 @@ public class QuadHeapSortDouble {
      * =============================================================
      */
 
-    public double[] getToSort() {
+    public float[] getToSort() {
         return toSort;
     } // end getter
 }

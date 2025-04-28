@@ -6,11 +6,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- * 3-way merge sort for doubles: You will be implementing a 3-way merge sort, which
+ * 3-way merge sort: You will be implementing a 3-way merge sort, which
  * divides the given input into 3 subsets of roughly equal size and recursively
- * sort each subset
- *
- * this is the same as the other three way mergesort, but instead takes doubles.
+ * sort each subsetd
  * todo:
  * -- read in text file to formulate a short[]; make this easy to maybe abstract out
  * --
@@ -43,8 +41,12 @@ public class ThreeWayMergeSortDouble {
      */
 
 
+    /**
+     * the sort method of three way mergesort.
+     * @param low start index
+     * @param high end index
+     */
     public void sort(int low, int high) {
-//        System.out.println("low " + low + " high " + high);
         if (low >= high) { return; }
         if (high - low == 1) { swapIfNeeded(low, high); return;}
 
@@ -54,37 +56,25 @@ public class ThreeWayMergeSortDouble {
         sort (low + third + 1, high - third);
         sort (high - third + 1, high);
 
-//        merge (low, low + third, low + third + 1, high - third);
-//        merge (low, high - third, high - third + 1, high);
-
-        copyIn (
-                merge (low, low + third, low + third + 1, high - third),
-                low,
-                high - third
-        );
-        copyIn (
-                merge (low, high - third, high - third + 1, high),
-                low,
-                high
-        );
-//        print(true);
-    }
+        merge (low, low + third, low + third + 1, high - third);
+        merge (low, high - third, high - third + 1, high);
+    } // end method
 
     /**
-     * todo: issue with memory on my machine with 2^30 case.
-     * @param startA
-     * @param endA
-     * @param startB
-     * @param endB
-     * @return
+     * merge method to take two starts, two ends, and merge the two
+     * sorted sections into a temporary array,
+     * which is then copied into the final array.
+     * @param startA given first starting index
+     * @param endA given first ending index
+     * @param startB given second starting index
+     * @param endB given second ending index
      */
-    private float[] merge(int startA, int endA, int startB, int endB) {
+    private void merge(int startA, int endA, int startB, int endB) {
         int i = startA, j = startB, k = 0;
         float[] temp = new float[endB - startA + 1];
 
-
+        // merge the two sorted lists into the temporary array
         while (i <= endA && j <= endB) {
-//            System.out.println("while1");
             if (toSort[i] > toSort[j]) {
                 temp[k] = toSort[j]; k++; j++;
             } else {
@@ -92,39 +82,62 @@ public class ThreeWayMergeSortDouble {
             } // end if
         } // end loop
 
+        // dump the contents of array 1 if needed
         while (i <= endA) {
-//            System.out.println("while2");
             temp[k] = toSort[i]; k++; i++;
         } // end while
 
+        // dump the contents of array 2 if needed
         while (j <= endB) {
-//            System.out.println("while3");
             temp[k] = toSort[j]; k++; j++;
         } // end while
 
-        return temp;
-
-    } // end method
-
-
-    private void copyIn(float[] temp, int start, int end) {
-        for (int i = start, j = 0; i <= end; i++, j++) {
-            toSort[i] = temp[j];
+        // copy the temporary array's merged contents into the global
+        for (i = startA, k = 0; i <= endB; i++, k++) {
+            toSort[i] = temp[k];
         } // end loop
     } // end method
 
+    /**
+     * only swap 2 values if they are not in ascending order.
+     * @param low first index
+     * @param high second index
+     */
     private void swapIfNeeded(int low, int high) {
         if (toSort[low] > toSort[high])  {
             swap(low, high);
         } // end if
     } // end method
 
-
+    /**
+     * straight forward utility swap method
+     * @param x first element to swap
+     * @param y second element to swap
+     */
     private void swap(int x, int y) {
         float temp = toSort[x];
         toSort[x] = toSort[y];
         toSort[y] = temp;
     } // end method
+
+//    /**
+//     * method common to all sort classes to read in a test case file
+//     * from basic java io operations.
+//     * @param path file path given, will be ultimately from the command line/from driver
+//     *             note that the test cases are all given as csv format
+//     */
+//    public void initArray(String path, int howMany) {
+//        toSort = new short[howMany]; int counter = 0;
+//        try {
+//            Scanner s = new Scanner(new File(path)).useDelimiter(",");
+//            while (s.hasNext()) {
+//                toSort[counter] = s.nextShort(); counter++;
+//            } // end loop
+//        } catch (FileNotFoundException e) {
+//            throw new RuntimeException("Oops, no file there. Love, mergesort.");
+//        } // end try/catch
+//
+//    } // end method
 
 
     /**
@@ -135,9 +148,11 @@ public class ThreeWayMergeSortDouble {
         toSort = new float[howMany];
 
         Random rand = new Random();
+        byte flipFlop = 1;
 
         for (int i = 0; i < howMany; i++) {
-            toSort[i] = (float) rand.nextDouble();
+            toSort[i] = rand.nextFloat() * 1000000 * flipFlop;
+            if (i % 2 == 1) {flipFlop = -1;} else {flipFlop = 1;}
         } // end loop
 
     } // end method
@@ -147,12 +162,11 @@ public class ThreeWayMergeSortDouble {
      */
     public void print(boolean printNums) {
         if (printNums) {
-            for (double num : toSort) {
+            for (float num : toSort) {
                 System.out.print(num + " ");
             } // end loop
+            System.out.println("Found " + toSort.length + " numbers.");
         } // end if
-
-        System.out.println("Found " + toSort.length + " numbers.");
     } // end method
 
     /**

@@ -1,8 +1,6 @@
 package DoubleSort;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.util.Random;
 
 /**
  * Tim sort: Tim sort is a hybrid sorting algorithm derived from merge sort
@@ -20,7 +18,7 @@ public class TimSortDouble {
      * =============================================================
      */
 
-    private double[] toSort = null;
+    private float[] toSort = null;
     private final static byte MIN_RUN = 32; // todo: min run size default for tim sort, 32 for completion
 
 
@@ -48,23 +46,17 @@ public class TimSortDouble {
      */
     public void sort() {
 
-        // todo: sitting to min run 16 for testing!
         // use insertion sort on smaller runs
         for (int i = 0; i < toSort.length; i += MIN_RUN) {
-            insertionSort(i, Math.min(toSort.length - 1, i + MIN_RUN - 1));
+            insertionSort(i, min(toSort.length - 1, i + MIN_RUN - 1));
         } // end loop
 
+        // merge the sub runs, increasing the sub run length with each iteration
         for (int j = MIN_RUN; j < toSort.length; j *= 2) {
-
             for (int i = 0; i < toSort.length; i += 2 * j) {
-//                System.out.println(i + " " + (i + j - 1) + " " + (i + j) + " " + Math.min(toSort.length - 1, i + (2 * j) - 1));
-                merge(i, Math.min(toSort.length - 1, i + j - 1), i + j, Math.min(toSort.length - 1, i + (2 * j) - 1));
-//                print(true);
-            }
-        }
-
-
-
+                merge(i, min(toSort.length - 1, i + j - 1), i + j, min(toSort.length - 1, i + (2 * j) - 1));
+            } // end loop
+        } // end loop
 
     } // end method
 
@@ -75,19 +67,18 @@ public class TimSortDouble {
      * @param high
      */
     private void insertionSort(int low, int high) {
-        int j; double temp;
+        int j; float temp;
         for (int i = low; i < high; i++) { // for every element of the list
 
-            if (toSort[i + 1] < toSort[i]) {
-                j = i;
-                temp = toSort[i + 1];
-                while (j >= low && toSort[j] > temp) {
-                    toSort[j + 1] = toSort[j];
+            if (toSort[i + 1] < toSort[i]) { // if we find a smaller element ahead
+                j = i; // bookmark
+                temp = toSort[i + 1]; // grab the element to "insert"
+                while (j >= low && toSort[j] > temp) { // until we hit end or something smaller
+                    toSort[j + 1] = toSort[j]; // make space
                     j--;
                 } // end loop
-                toSort[j + 1] = temp;
+                toSort[j + 1] = temp; // insert element in correct spot
             } // end if
-//            print(true);
         } // end loop
 
     } // end method
@@ -103,18 +94,15 @@ public class TimSortDouble {
      * @return
      */
     private void merge(int startA, int endA, int startB, int endB) {
-//        System.out.println(endA + " " + endB);
         int i = startA, j = startB, k = 0;
-        double[] temp = new double[endB - startA + 1];
+        float[] temp = new float[endB - startA + 1];
 
 
         while (i <= endA && j <= endB) {
-//            System.out.println("um");
             if (toSort[i] > toSort[j]) {
                 temp[k] = toSort[j]; k++; j++;
             } else {
                 temp[k] = toSort[i]; k++; i++;
-//                System.out.println("?????");
             } // end if
         } // end loop
 
@@ -126,18 +114,23 @@ public class TimSortDouble {
             temp[k] = toSort[j]; k++; j++;
         } // end while
 
-//        System.out.println("TEMP");
-//
-//        for (int num : temp) {
-//            System.out.print(num + " ");
-//        }
-//        System.out.println();
-
         for (i = startA, k = 0; i <= endB; i++, k++) {
             toSort[i] = temp[k];
-
         } // end loop
 
+    } // end method
+
+    /**
+     * simple return the minimum of two values utility.
+     * @param x int 1
+     * @param y int 2
+     * @return the smaller (or first if equal) of 2
+     */
+    private int min(int x, int y) {
+        if (x <= y) {
+            return x;
+        } // end if
+        return y;
     } // end method
 
     /**
@@ -145,33 +138,49 @@ public class TimSortDouble {
      */
     public void print(boolean printNums) {
         if (printNums) {
-            for (double num : toSort) {
+            for (float num : toSort) {
                 System.out.print(num + " ");
             } // end loop
+            System.out.println("Found " + toSort.length + " numbers.");
         } // end if
-
-        System.out.println("Found " + toSort.length + " numbers.");
     } // end method
+
+//    /**
+//     * method common to all sort classes to read in a test case file
+//     * from basic java io operations.
+//     * @param path file path given, will be ultimately from the command line/from driver
+//     *             note that the test cases are all given as csv format
+//     */
+//    public void initArray(String path, int howMany) {
+//        toSort = new short[howMany]; int counter = 0;
+//        try {
+//            Scanner s = new Scanner(new File(path)).useDelimiter(",");
+//            while (s.hasNext()) {
+//                toSort[counter] = s.nextShort(); counter++;
+//            } // end loop
+//        } catch (FileNotFoundException e) {
+//            throw new RuntimeException("Oops, no file there. Love, mergesort.");
+//        } // end try/catch
+//
+//    } // end method
+
 
     /**
-     * method common to all sort classes to read in a test case file
+     * gen a random test case
      * from basic java io operations.
-     * @param path file path given, will be ultimately from the command line/from driver
-     *             note that the test cases are all given as csv format
      */
-    public void initArray(String path, int howMany) {
-        toSort = new double[howMany]; int counter = 0;
-        try {
-            Scanner s = new Scanner(new File(path)).useDelimiter(",");
-            while (s.hasNext()) {
-                toSort[counter] = s.nextDouble(); counter++;
-            } // end loop
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("Oops, no file there. Love, mergesort.");
-        } // end try/catch
+    public void initArray(int howMany) {
+        toSort = new float[howMany];
+
+        Random rand = new Random();
+        byte flipFlop = 1;
+
+        for (int i = 0; i < howMany; i++) {
+            toSort[i] = rand.nextFloat() * 1000000 * flipFlop;
+            if (i % 2 == 1) {flipFlop = -1;} else {flipFlop = 1;}
+        } // end loop
 
     } // end method
-
 
     /**
      * simple ascending list checker to run for testing purposes on
@@ -198,7 +207,7 @@ public class TimSortDouble {
      * =============================================================
      */
 
-    public double[] getToSort(){
+    public float[] getToSort(){
         return toSort;
     } // end getter
 

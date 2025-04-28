@@ -10,14 +10,10 @@ import IntSort.TimSort;
 public class Driver {
 
     public static final Log logger = new Log();
-
-    public static final int NUM_NUMBERS = (int) Math.pow(2, 25);//(int) Math.pow(2, 3); // 16
-    public static final short NUM_TEST_CASES = 10;
     public static final boolean LOG = false;
 
 
-    public static final boolean PRINT_ARR = false;
-    public static final String FILE_NAME = "Integer_Unsorted_2^24"; // "Integer_Unsorted_2^30"; // playground
+    public static final boolean PRINT_ARR = true;
 
 
     public static void main(String[] args) {
@@ -26,7 +22,14 @@ public class Driver {
 //        generateIntFiles();
 
 //        runAllIntBenchmarks(20, 30, 10);
-//        runAllDoubleBenchmarks(20, 25, 10);
+//        runAllDoubleBenchmarks(3, 3, 1);
+        testQuadHSDouble(11);
+        System.out.println();
+        testRandomQSDouble(11);
+        System.out.println();
+        testThreeWayMSDouble(11);
+        System.out.println();
+        testTimSortDouble(11);
     } // end main method
 
     public static void runAllDoubleBenchmarks(int low, int high, int numTestCases) {
@@ -139,35 +142,36 @@ public class Driver {
         long endTime = System.nanoTime();
 
         qhs.print(PRINT_ARR);
+
+        if (!qhs.isSorted())
+            throw new RuntimeException("Something wasn't sorted! " + " qhs int " + numNumbers);
+
         if (LOG)
             logger.log("qhs_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
 
-        if (!qhs.isSorted()) {
-            throw new RuntimeException("Something wasn't sorted! " + " qhs int " + numNumbers);
-        }
+    } // end method
 
-    }
-
-    public static void testQuadHSDouble() {
+    public static void testQuadHSDouble(int numNumbers) {
         QuadHeapSortDouble qhs = new QuadHeapSortDouble();
-        qhs.initArray(
-                "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
-                NUM_NUMBERS
-        );
-        qhs.print(PRINT_ARR);
-        qhs.sort(NUM_NUMBERS);
-        qhs.print(PRINT_ARR);
-        System.out.println("Done.");
-        System.out.println("Sorted: " + qhs.isSorted());
 
-    }
+        qhs.initArray(numNumbers);
+        qhs.print(PRINT_ARR);
+
+        long startTime = System.nanoTime();
+        qhs.sort(numNumbers);
+        long endTime = System.nanoTime();
+
+        qhs.print(PRINT_ARR);
+
+        if (!qhs.isSorted())
+            throw new RuntimeException("Something wasn't sorted! " + " qhs double " + numNumbers);
+
+        if (LOG)
+            logger.log("qhs_double_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
+    } // end method
 
     public static void testRandomQS(int numNumbers) {
         RandomizedQuickSort rqs = new RandomizedQuickSort();
-//        rqs.initArray( // very slow, don't use for testing
-//                "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
-//                NUM_NUMBERS
-//        );
 
         rqs.initArray(numNumbers);
         rqs.print(PRINT_ARR);
@@ -175,36 +179,38 @@ public class Driver {
         long startTime = System.nanoTime();
         rqs.sort(0,numNumbers - 1);
         long endTime = System.nanoTime();
+
         rqs.print(PRINT_ARR);
+
+        if (!rqs.isSorted())
+            throw new RuntimeException("Something wasn't sorted! " + " rqs int " + numNumbers);
+
         if (LOG)
             logger.log("rqs_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
+    } // end method
 
-        if (!rqs.isSorted()) {
-            throw new RuntimeException("Something wasn't sorted! " + " rqs int " + numNumbers);
-        }
-
-    }
-
-    public static void testRandomQSDouble() {
+    public static void testRandomQSDouble(int numNumbers) {
         RandomizedQuickSortDouble rqs = new RandomizedQuickSortDouble();
-        rqs.initArray(
-                "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
-                NUM_NUMBERS
-        );
-        rqs.print(PRINT_ARR);
-        rqs.sort(0, NUM_NUMBERS - 1);
-        rqs.print(PRINT_ARR);
-        System.out.println("Done.");
-        System.out.println("Sorted: " + rqs.isSorted());
 
-    }
+        rqs.initArray(numNumbers);
+        rqs.print(PRINT_ARR);
+
+        long startTime = System.nanoTime();
+        rqs.sort(0,numNumbers - 1);
+        long endTime = System.nanoTime();
+
+        rqs.print(PRINT_ARR);
+
+        if (!rqs.isSorted())
+            throw new RuntimeException("Something wasn't sorted! " + " rqs double " + numNumbers);
+
+        if (LOG)
+            logger.log("rqs_double_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
+
+    } // end method
 
     public static void testThreeWayMS(int numNumbers) {
         ThreeWayMergeSort twms = new ThreeWayMergeSort();
-//        twms.initArray(
-//                "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
-//                NUM_NUMBERS
-//        );
 
         twms.initArray(numNumbers);
         twms.print(PRINT_ARR);
@@ -212,33 +218,34 @@ public class Driver {
         long startTime = System.nanoTime();
         twms.sort(0,numNumbers - 1);
         long endTime = System.nanoTime();
+
         twms.print(PRINT_ARR);
+
+        if (!twms.isSorted())
+            throw new RuntimeException("Something wasn't sorted! " + " twms int " + numNumbers);
+
         if (LOG)
             logger.log("twms_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
-
-        if (!twms.isSorted()) {
-            throw new RuntimeException("Something wasn't sorted! " + " twms int " + numNumbers);
-        }
-
-    }
+    } // end method
 
     public static void testThreeWayMSDouble(int numNumbers) {
         ThreeWayMergeSortDouble twms = new ThreeWayMergeSortDouble();
 
         twms.initArray(numNumbers);
+        twms.print(PRINT_ARR);
 
-//        twms.print(true);
         long startTime = System.nanoTime();
         twms.sort(0,numNumbers - 1);
         long endTime = System.nanoTime();
-//        twms.print(true);
+
+        twms.print(PRINT_ARR);
 
         if (!twms.isSorted())
             throw new RuntimeException("Something wasn't sorted! " + " twms double " + numNumbers);
 
         if (LOG)
             logger.log("twms_double_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
-    }
+    } // end method
 
     /**
      * uncomment or type in whatever files you need to make.
