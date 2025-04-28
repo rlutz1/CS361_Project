@@ -13,7 +13,7 @@ public class Driver {
     public static final boolean LOG = false;
 
 
-    public static final boolean PRINT_ARR = true;
+    public static final boolean PRINT_ARR = false;
 
 
     public static void main(String[] args) {
@@ -23,13 +23,19 @@ public class Driver {
 
 //        runAllIntBenchmarks(20, 30, 10);
 //        runAllDoubleBenchmarks(3, 3, 1);
-        testQuadHSDouble(11);
-        System.out.println();
-        testRandomQSDouble(11);
-        System.out.println();
-        testThreeWayMSDouble(11);
-        System.out.println();
-        testTimSortDouble(11);
+//        System.out.println((int) Math.pow(2, 30));
+//        System.out.println((int) Math.pow(2, 30) + 1);
+//        System.out.println((int) Math.pow(2, 31));
+//        System.out.println((int) Math.pow(2, 31) + 1);
+//        System.out.println((-1) *(int) Math.pow(2, 31) - 2);
+//        testQuadHS((int) Math.pow(2, 30));
+//        testQuadHSDouble((int) Math.pow(2, 30));
+//        System.out.println();
+//        testRandomQSDouble((int) Math.pow(2, 30));
+//        System.out.println();
+//        testThreeWayMSDouble((int) Math.pow(2, 30));
+//        System.out.println();
+//        testTimSortDouble((int) Math.pow(2, 30));
     } // end main method
 
     public static void runAllDoubleBenchmarks(int low, int high, int numTestCases) {

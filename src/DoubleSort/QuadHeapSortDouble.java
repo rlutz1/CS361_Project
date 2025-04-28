@@ -67,7 +67,7 @@ public class QuadHeapSortDouble {
      * @param end ending point to stop at
      */
     public void maxHeapify(int start, int end) {
-        if (start < (int) Math.pow(2,29)) { // limit to note
+        if (start < (int) Math.pow(2,28)) { // limit to note
             // grab all 4 children
             int child1 = 4 * start + 1;
             int child2 = 4 * start + 2;
