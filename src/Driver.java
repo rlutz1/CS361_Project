@@ -16,20 +16,28 @@ public class Driver {
     public static final boolean LOG = false;
 
 
-    public static final boolean PRINT_ARR = false;
+    public static final boolean PRINT_ARR = true;
     public static final String FILE_NAME = "Integer_Unsorted_2^24"; // "Integer_Unsorted_2^30"; // playground
 
 
     public static void main(String[] args) {
         // generating test case files for consistent testing
+        testThreeWayMS(22);
+//        System.out.println();
+//        testTimSort(11);
+//        System.out.println();
+//        testQuadHS(11);
+//        System.out.println();
+//        testRandomQS(11);
+
 //        generateDoubleFiles();
 //        generateIntFiles();
-        System.out.println("Running " + NUM_TEST_CASES + " test cases with " + NUM_NUMBERS + " random unsorted numbers in array.");
+//        System.out.println("Running " + NUM_TEST_CASES + " test cases with " + NUM_NUMBERS + " random unsorted numbers in array.");
 //        testThreeWayMS(50);
-//        testQuadHS((int) Math.pow(2, 30));
+//        testQuadHS((int) Math.pow(2, 29));
 //        System.out.println((int) Math.pow(2, 31) +1);
 
-        testThreeWayMSDouble((int) Math.pow(2, 30));
+//        testThreeWayMSDouble((int) Math.pow(2, 30));
 
 //        for (int j = 30; j < 31; j++) {
 //            int num_numbers = (int) Math.pow(2, j);
@@ -83,12 +91,12 @@ public class Driver {
 //        );
 
         ts.initArray(numNumbers);
-//        ts.print(PRINT_ARR);
+        ts.print(PRINT_ARR);
 
         long startTime = System.nanoTime();
         ts.sort();
         long endTime = System.nanoTime();
-
+        ts.print(PRINT_ARR);
         if (LOG)
             logger.log("ts_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
 
@@ -118,12 +126,12 @@ public class Driver {
 //        );
 
         qhs.initArray(numNumbers);
-//        qhs.print(PRINT_ARR);
+        qhs.print(PRINT_ARR);
 
         long startTime = System.nanoTime();
         qhs.sort(numNumbers);
         long endTime = System.nanoTime();
-
+        qhs.print(PRINT_ARR);
         if (LOG)
             logger.log("qhs_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
 
@@ -155,12 +163,12 @@ public class Driver {
 //        );
 
         rqs.initArray(numNumbers);
-//        rqs.print(PRINT_ARR);
+        rqs.print(PRINT_ARR);
 
         long startTime = System.nanoTime();
         rqs.sort(0,numNumbers - 1);
         long endTime = System.nanoTime();
-
+        rqs.print(PRINT_ARR);
         if (LOG)
             logger.log("rqs_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
 
@@ -192,11 +200,12 @@ public class Driver {
 //        );
 
         twms.initArray(numNumbers);
+        twms.print(PRINT_ARR);
 
         long startTime = System.nanoTime();
         twms.sort(0,numNumbers - 1);
         long endTime = System.nanoTime();
-
+        twms.print(PRINT_ARR);
         if (LOG)
             logger.log("twms_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
 

@@ -22,7 +22,7 @@ public class ThreeWayMergeSort {
      * =============================================================
      */
 
-    private short[] toSort = null;
+    private int[] toSort = null;
 
 
     /*
@@ -71,7 +71,7 @@ public class ThreeWayMergeSort {
      */
     private void merge(int startA, int endA, int startB, int endB) {
         int i = startA, j = startB, k = 0;
-        short[] temp = new short[endB - startA + 1];
+        int[] temp = new int[endB - startA + 1];
 
         // merge the two sorted lists into the temporary array
         while (i <= endA && j <= endB) {
@@ -115,7 +115,7 @@ public class ThreeWayMergeSort {
      * @param y second element to swap
      */
     private void swap(int x, int y) {
-        short temp = toSort[x];
+        int temp = toSort[x];
         toSort[x] = toSort[y];
         toSort[y] = temp;
     } // end method
@@ -145,12 +145,12 @@ public class ThreeWayMergeSort {
      * from basic java io operations.
      */
     public void initArray(int howMany) {
-        toSort = new short[howMany];
+        toSort = new int[howMany];
 
         Random rand = new Random();
 
         for (int i = 0; i < howMany; i++) {
-            toSort[i] = (short)rand.nextInt();
+            toSort[i] = rand.nextInt();
         } // end loop
 
     } // end method
@@ -192,7 +192,7 @@ public class ThreeWayMergeSort {
      * =============================================================
      */
 
-    public short[] getToSort() {
+    public int[] getToSort() {
         return toSort;
     } // end getter
 
