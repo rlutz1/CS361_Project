@@ -5,12 +5,9 @@ Default heap size command:
 -Xmx12g -- for floats (ms and ts specifically due to 32 bit min)
 
 ## TODO
-+ make sure all sorts are randomly generating numbers--allow for seeding if wanting to replicate the same test case
-+ look to rqs integer test in driver for easy format
-+ for loop all of them
-+ run and don't use computer for anything else
-+ let's get at least 100 runs for each case. take weekend time to run for the large inputs.
-+ this will clarify all final needs when running all of them. -- document 
+
++ gather last of 2^22s data, not sure what happened there lol
++ gather remaining big data overnight
 + try QHS with ints. it should work. note any changes in performance
   + on that note, keep testing it, limit of < 2^29 should be fine but i clearly had a reason at the time for 2^28 so SUSPICIOUS
 + is math.pow an issue? if so: for loop it up
