@@ -117,9 +117,8 @@ public class RandomizedQuickSort {
             for (int num : toSort) {
                 System.out.print(num + " ");
             } // end loop
+            System.out.println("Found " + toSort.length + " numbers.");
         } // end if
-
-        System.out.println("Found " + toSort.length + " numbers.");
     } // end method
 
     /**

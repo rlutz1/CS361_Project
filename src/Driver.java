@@ -22,73 +22,75 @@ public class Driver {
 
     public static void main(String[] args) {
         // generating test case files for consistent testing
-//        testThreeWayMS(22);
-//        System.out.println();
-        testTimSort((int) Math.pow(2, 30));
-//        System.out.println();
-//        testQuadHS(11);
-//        System.out.println();
-//        testRandomQS(11);
-
 //        generateDoubleFiles();
 //        generateIntFiles();
-//        System.out.println("Running " + NUM_TEST_CASES + " test cases with " + NUM_NUMBERS + " random unsorted numbers in array.");
-//        testThreeWayMS(50);
-//        testQuadHS((int) Math.pow(2, 29));
-//        System.out.println((int) Math.pow(2, 31) +1);
 
-//        testThreeWayMSDouble((int) Math.pow(2, 30));
-
-//        for (int j = 30; j < 31; j++) {
-//            int num_numbers = (int) Math.pow(2, j);
-//
-////            System.out.println("Running Random QS");
-////            for (int i = 0; i < NUM_TEST_CASES; i++) {
-////                testRandomQS(num_numbers);
-////                System.out.println("Done: " + (i + 1));
-////            }
-////
-////            System.out.println("Running Three Way MS");
-////            for (int i = 0; i < NUM_TEST_CASES; i++) {
-////                testThreeWayMS(num_numbers);
-////                System.out.println("Done: " + (i + 1));
-////            }
-//
-//            System.out.println("Running Quad HS");
-//            for (int i = 0; i < NUM_TEST_CASES; i++) {
-//                testQuadHS(num_numbers);
-//                System.out.println("Done: " + (i + 1));
-//            }
-//
-//            System.out.println("Running Tim Sort");
-//            for (int i = 0; i < NUM_TEST_CASES; i++) {
-//                testTimSort(num_numbers);
-//                System.out.println("Done: " + (i + 1));
-//            }
-//        }
-
-
-
-        // test int cases
-//        testThreeWayMS();
-//        testRandomQS();
-//        testQuadHS();
-//        testTimSort();
-
-        // test double cases
-//        testThreeWayMSDouble();
-//        testRandomQSDouble();
-//        testQuadHSDouble();
-//        testTimSortDouble();
-
+//        runAllIntBenchmarks(20, 30, 10);
+//        runAllDoubleBenchmarks(20, 25, 10);
     } // end main method
+
+    public static void runAllDoubleBenchmarks(int low, int high, int numTestCases) {
+        for (int j = low; j <= high; j++) {
+            int num_numbers = (int) Math.pow(2, j);
+
+            System.out.println("Running Random QS");
+            for (int i = 0; i < numTestCases; i++) {
+                testRandomQSDouble(num_numbers);
+                System.out.println("Done: " + (i + 1));
+            } // end loop
+
+            System.out.println("Running Three Way MS");
+            for (int i = 0; i < numTestCases; i++) {
+                testThreeWayMSDouble(num_numbers);
+                System.out.println("Done: " + (i + 1));
+            } // end loop
+
+            System.out.println("Running Quad HS");
+            for (int i = 0; i < numTestCases; i++) {
+                testQuadHSDouble(num_numbers);
+                System.out.println("Done: " + (i + 1));
+            } // end loop
+
+            System.out.println("Running Tim Sort");
+            for (int i = 0; i < numTestCases; i++) {
+                testTimSortDouble(num_numbers);
+                System.out.println("Done: " + (i + 1));
+            } // end loop
+        } // end loop
+    } // end method
+
+    public static void runAllIntBenchmarks(int low, int high, int numTestCases) {
+        for (int j = low; j <= high; j++) {
+            int num_numbers = (int) Math.pow(2, j);
+
+            System.out.println("Running Random QS");
+            for (int i = 0; i < numTestCases; i++) {
+                testRandomQS(num_numbers);
+                System.out.println("Done: " + (i + 1));
+            } // end loop
+
+            System.out.println("Running Three Way MS");
+            for (int i = 0; i < numTestCases; i++) {
+                testThreeWayMS(num_numbers);
+                System.out.println("Done: " + (i + 1));
+            } // end loop
+
+            System.out.println("Running Quad HS");
+            for (int i = 0; i < numTestCases; i++) {
+                testQuadHS(num_numbers);
+                System.out.println("Done: " + (i + 1));
+            } // end loop
+
+            System.out.println("Running Tim Sort");
+            for (int i = 0; i < numTestCases; i++) {
+                testTimSort(num_numbers);
+                System.out.println("Done: " + (i + 1));
+            } // end loop
+        } // end loop
+    } // end method
 
     public static void testTimSort(int numNumbers) {
         TimSort ts = new TimSort();
-//        ts.initArray(
-//                "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
-//                NUM_NUMBERS
-//        );
 
         ts.initArray(numNumbers);
         ts.print(PRINT_ARR);
@@ -96,34 +98,38 @@ public class Driver {
         long startTime = System.nanoTime();
         ts.sort();
         long endTime = System.nanoTime();
+
         ts.print(PRINT_ARR);
+
+        if (!ts.isSorted())
+            throw new RuntimeException("Something wasn't sorted! " + " ts int " + numNumbers);
+
         if (LOG)
             logger.log("ts_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
 
-        if (!ts.isSorted()) {
-            throw new RuntimeException("Something wasn't sorted! " + " ts int " + numNumbers);
-        }
-    }
+    } // end method
 
-    public static void testTimSortDouble() {
+    public static void testTimSortDouble(int numNumbers) {
         TimSortDouble ts = new TimSortDouble();
-        ts.initArray(
-                "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
-                NUM_NUMBERS
-        );
+
+        ts.initArray(numNumbers);
         ts.print(PRINT_ARR);
+
+        long startTime = System.nanoTime();
         ts.sort();
+        long endTime = System.nanoTime();
+
         ts.print(PRINT_ARR);
-        System.out.println("Done.");
-        System.out.println("Sorted: " + ts.isSorted());
-    }
+
+        if (!ts.isSorted())
+            throw new RuntimeException("Something wasn't sorted! " + " ts double " + numNumbers);
+
+        if (LOG)
+            logger.log("ts_double_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
+    } // end method
 
     public static void testQuadHS(int numNumbers) {
         QuadHeapSort qhs = new QuadHeapSort();
-//        qhs.initArray(
-//                "C:\\Users\\lutzr\\CS351\\ProjectSource\\CS361_Project\\tests\\" + FILE_NAME,
-//                NUM_NUMBERS
-//        );
 
         qhs.initArray(numNumbers);
         qhs.print(PRINT_ARR);
@@ -131,6 +137,7 @@ public class Driver {
         long startTime = System.nanoTime();
         qhs.sort(numNumbers);
         long endTime = System.nanoTime();
+
         qhs.print(PRINT_ARR);
         if (LOG)
             logger.log("qhs_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
