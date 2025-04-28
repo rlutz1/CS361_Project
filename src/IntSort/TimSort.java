@@ -48,13 +48,13 @@ public class TimSort {
 
         // use insertion sort on smaller runs
         for (int i = 0; i < toSort.length; i += MIN_RUN) {
-            insertionSort(i, Math.min(toSort.length - 1, i + MIN_RUN - 1));
+            insertionSort(i, min(toSort.length - 1, i + MIN_RUN - 1));
         } // end loop
 
         // merge the sub runs, increasing the sub run length with each iteration
         for (int j = MIN_RUN; j < toSort.length; j *= 2) {
             for (int i = 0; i < toSort.length; i += 2 * j) {
-                merge(i, Math.min(toSort.length - 1, i + j - 1), i + j, Math.min(toSort.length - 1, i + (2 * j) - 1));
+                merge(i, min(toSort.length - 1, i + j - 1), i + j, min(toSort.length - 1, i + (2 * j) - 1));
             } // end loop
         } // end loop
 
@@ -118,6 +118,19 @@ public class TimSort {
             toSort[i] = temp[k];
         } // end loop
 
+    } // end method
+
+    /**
+     * simple return the minimum of two values utility.
+     * @param x int 1
+     * @param y int 2
+     * @return the smaller (or first if equal) of 2
+     */
+    private int min(int x, int y) {
+        if (x <= y) {
+            return x;
+        } // end if
+        return y;
     } // end method
 
     /**

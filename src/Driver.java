@@ -22,9 +22,9 @@ public class Driver {
 
     public static void main(String[] args) {
         // generating test case files for consistent testing
-        testThreeWayMS(22);
+//        testThreeWayMS(22);
 //        System.out.println();
-//        testTimSort(11);
+        testTimSort(30);
 //        System.out.println();
 //        testQuadHS(11);
 //        System.out.println();
