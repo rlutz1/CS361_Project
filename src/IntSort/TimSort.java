@@ -18,7 +18,7 @@ public class TimSort {
      * =============================================================
      */
 
-    private short[] toSort = null;
+    private int[] toSort = null;
     private final static byte MIN_RUN = 32; // todo: min run size default for tim sort, 32 for completion
 
 
@@ -67,7 +67,7 @@ public class TimSort {
      * @param high
      */
     private void insertionSort(int low, int high) {
-        int j; short temp;
+        int j; int temp;
         for (int i = low; i < high; i++) { // for every element of the list
 
             if (toSort[i + 1] < toSort[i]) { // if we find a smaller element ahead
@@ -95,7 +95,7 @@ public class TimSort {
      */
     private void merge(int startA, int endA, int startB, int endB) {
         int i = startA, j = startB, k = 0;
-        short[] temp = new short[endB - startA + 1];
+        int[] temp = new int[endB - startA + 1];
 
 
         while (i <= endA && j <= endB) {
@@ -171,12 +171,12 @@ public class TimSort {
      * from basic java io operations.
      */
     public void initArray(int howMany) {
-        toSort = new short[howMany];
+        toSort = new int[howMany];
 
         Random rand = new Random();
 
         for (int i = 0; i < howMany; i++) {
-            toSort[i] = (short)rand.nextInt();
+            toSort[i] = rand.nextInt();
         } // end loop
 
     } // end method
@@ -206,7 +206,7 @@ public class TimSort {
      * =============================================================
      */
 
-    public short[] getToSort(){
+    public int[] getToSort(){
         return toSort;
     } // end getter
 

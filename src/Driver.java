@@ -16,7 +16,7 @@ public class Driver {
     public static final boolean LOG = false;
 
 
-    public static final boolean PRINT_ARR = true;
+    public static final boolean PRINT_ARR = false;
     public static final String FILE_NAME = "Integer_Unsorted_2^24"; // "Integer_Unsorted_2^30"; // playground
 
 
@@ -24,7 +24,7 @@ public class Driver {
         // generating test case files for consistent testing
 //        testThreeWayMS(22);
 //        System.out.println();
-        testTimSort(30);
+        testTimSort((int) Math.pow(2, 30));
 //        System.out.println();
 //        testQuadHS(11);
 //        System.out.println();
