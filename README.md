@@ -7,7 +7,7 @@ Default heap size command:
 ## TODO
 
 + gather last of 2^22s data, not sure what happened there lol
-+ gather remaining big data overnight
++ ~~gather remaining big data overnight~~ put in spread sheet
 + try QHS with ints. it should work. note any changes in performance
   + on that note, keep testing it, limit of < 2^29 should be fine but i clearly had a reason at the time for 2^28 so SUSPICIOUS
 + is math.pow an issue? if so: for loop it up
