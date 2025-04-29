@@ -10,7 +10,7 @@ import IntSort.TimSort;
 public class Driver {
 
     public static final Log logger = new Log();
-    public static final boolean LOG = false;
+    public static final boolean LOG = true;
 
 
     public static final boolean PRINT_ARR = false;
@@ -22,7 +22,7 @@ public class Driver {
 //        generateIntFiles();
 
 //        runAllIntBenchmarks(20, 30, 10);
-//        runAllDoubleBenchmarks(3, 3, 1);
+        runAllDoubleBenchmarks(26, 30, 10);
 //        System.out.println((int) Math.pow(2, 30));
 //        System.out.println((int) Math.pow(2, 30) + 1);
 //        System.out.println((int) Math.pow(2, 31));
