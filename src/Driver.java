@@ -21,8 +21,10 @@ public class Driver {
 //        generateDoubleFiles();
 //        generateIntFiles();
 
-//        runAllIntBenchmarks(20, 30, 10);
-        runAllDoubleBenchmarks(26, 30, 10);
+        runAllIntBenchmarks(20, 25, 150);
+//        runAllDoubleBenchmarks(20, 25, 200);
+
+
 //        System.out.println((int) Math.pow(2, 30));
 //        System.out.println((int) Math.pow(2, 30) + 1);
 //        System.out.println((int) Math.pow(2, 31));
@@ -42,17 +44,17 @@ public class Driver {
         for (int j = low; j <= high; j++) {
             int num_numbers = (int) Math.pow(2, j);
 
-            System.out.println("Running Random QS");
-            for (int i = 0; i < numTestCases; i++) {
-                testRandomQSDouble(num_numbers);
-                System.out.println("Done: " + (i + 1));
-            } // end loop
+//            System.out.println("Running Random QS");
+//            for (int i = 0; i < numTestCases; i++) {
+//                testRandomQSDouble(num_numbers);
+//                System.out.println("Done: " + (i + 1));
+//            } // end loop
 
-            System.out.println("Running Three Way MS");
-            for (int i = 0; i < numTestCases; i++) {
-                testThreeWayMSDouble(num_numbers);
-                System.out.println("Done: " + (i + 1));
-            } // end loop
+//            System.out.println("Running Three Way MS");
+//            for (int i = 0; i < numTestCases; i++) {
+//                testThreeWayMSDouble(num_numbers);
+//                System.out.println("Done: " + (i + 1));
+//            } // end loop
 
             System.out.println("Running Quad HS");
             for (int i = 0; i < numTestCases; i++) {
@@ -60,11 +62,11 @@ public class Driver {
                 System.out.println("Done: " + (i + 1));
             } // end loop
 
-            System.out.println("Running Tim Sort");
-            for (int i = 0; i < numTestCases; i++) {
-                testTimSortDouble(num_numbers);
-                System.out.println("Done: " + (i + 1));
-            } // end loop
+//            System.out.println("Running Tim Sort");
+//            for (int i = 0; i < numTestCases; i++) {
+//                testTimSortDouble(num_numbers);
+//                System.out.println("Done: " + (i + 1));
+//            } // end loop
         } // end loop
     } // end method
 
@@ -72,17 +74,17 @@ public class Driver {
         for (int j = low; j <= high; j++) {
             int num_numbers = (int) Math.pow(2, j);
 
-            System.out.println("Running Random QS");
-            for (int i = 0; i < numTestCases; i++) {
-                testRandomQS(num_numbers);
-                System.out.println("Done: " + (i + 1));
-            } // end loop
+//            System.out.println("Running Random QS");
+//            for (int i = 0; i < numTestCases; i++) {
+//                testRandomQS(num_numbers);
+//                System.out.println("Done: " + (i + 1));
+//            } // end loop
 
-            System.out.println("Running Three Way MS");
-            for (int i = 0; i < numTestCases; i++) {
-                testThreeWayMS(num_numbers);
-                System.out.println("Done: " + (i + 1));
-            } // end loop
+//            System.out.println("Running Three Way MS");
+//            for (int i = 0; i < numTestCases; i++) {
+//                testThreeWayMS(num_numbers);
+//                System.out.println("Done: " + (i + 1));
+//            } // end loop
 
             System.out.println("Running Quad HS");
             for (int i = 0; i < numTestCases; i++) {
@@ -90,11 +92,11 @@ public class Driver {
                 System.out.println("Done: " + (i + 1));
             } // end loop
 
-            System.out.println("Running Tim Sort");
-            for (int i = 0; i < numTestCases; i++) {
-                testTimSort(num_numbers);
-                System.out.println("Done: " + (i + 1));
-            } // end loop
+//            System.out.println("Running Tim Sort");
+//            for (int i = 0; i < numTestCases; i++) {
+//                testTimSort(num_numbers);
+//                System.out.println("Done: " + (i + 1));
+//            } // end loop
         } // end loop
     } // end method
 
