@@ -8,8 +8,6 @@ Default heap size command:
 
 + rerun qhs doubles 26 - 30 and qhs int 26 - 30
 
-+ gather last of 2^22s data, not sure what happened there lol 100 more of all of them
-
 + gather remaining big data overnight  && put in spread sheet
 
 + is math.pow an issue? if so: for loop it up
@@ -51,4 +49,3 @@ Default heap size command:
     + randomized lists/other test cases of the same sizes *TODO!!!!!*
     + doubles/floats
 
-CS361 project files

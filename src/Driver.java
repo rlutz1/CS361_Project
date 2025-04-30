@@ -7,6 +7,8 @@ import IntSort.RandomizedQuickSort;
 import IntSort.ThreeWayMergeSort;
 import IntSort.TimSort;
 
+import java.util.Random;
+
 public class Driver {
 
     public static final Log logger = new Log();
@@ -21,7 +23,7 @@ public class Driver {
 //        generateDoubleFiles();
 //        generateIntFiles();
 
-        runAllIntBenchmarks(22, 22, 100);
+//        runAllIntBenchmarks(22, 22, 100);
 //        runAllDoubleBenchmarks(20, 25, 200);
 
 
