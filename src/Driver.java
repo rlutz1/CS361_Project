@@ -8,6 +8,7 @@ import IntSort.ThreeWayMergeSort;
 import IntSort.TimSort;
 
 
+
 public class Driver {
 
     public static final Log logger = new Log();
@@ -22,9 +23,8 @@ public class Driver {
 //        generateDoubleFiles();
 //        generateIntFiles();
 
-//        runAllIntBenchmarks(22, 22, 100);
+//        runAllIntBenchmarks(26, 30, 10);
 //        runAllDoubleBenchmarks(20, 25, 200);
-
 
 //        System.out.println((int) Math.pow(2, 30));
 //        System.out.println((int) Math.pow(2, 30) + 1);
@@ -75,29 +75,29 @@ public class Driver {
         for (int j = low; j <= high; j++) {
             int num_numbers = (int) Math.pow(2, j);
 
-            System.out.println("Running Random QS");
-            for (int i = 0; i < numTestCases; i++) {
-                testRandomQS(num_numbers);
-                System.out.println("Done: " + (i + 1));
-            } // end loop
-
-            System.out.println("Running Three Way MS");
-            for (int i = 0; i < numTestCases; i++) {
-                testThreeWayMS(num_numbers);
-                System.out.println("Done: " + (i + 1));
-            } // end loop
-
-//            System.out.println("Running Quad HS");
+//            System.out.println("Running Random QS");
 //            for (int i = 0; i < numTestCases; i++) {
-//                testQuadHS(num_numbers);
+//                testRandomQS(num_numbers);
+//                System.out.println("Done: " + (i + 1));
+//            } // end loop
+//
+//            System.out.println("Running Three Way MS");
+//            for (int i = 0; i < numTestCases; i++) {
+//                testThreeWayMS(num_numbers);
 //                System.out.println("Done: " + (i + 1));
 //            } // end loop
 
-            System.out.println("Running Tim Sort");
+            System.out.println("Running Quad HS");
             for (int i = 0; i < numTestCases; i++) {
-                testTimSort(num_numbers);
+                testQuadHS(num_numbers);
                 System.out.println("Done: " + (i + 1));
             } // end loop
+
+//            System.out.println("Running Tim Sort");
+//            for (int i = 0; i < numTestCases; i++) {
+//                testTimSort(num_numbers);
+//                System.out.println("Done: " + (i + 1));
+//            } // end loop
         } // end loop
     } // end method
 

@@ -4,15 +4,32 @@ Default heap size command:
 -Xmx6g
 -Xmx12g -- for floats (ms and ts specifically due to 32 bit min)
 
+## runs so far
+TWMS: O(nlog_3n)
+QHS: O(nlog_4n)
+RQS: O(nlog_2n) -> see cormen for most of that explanation
+TS: 
+
+
 ## TODO
 
 + rerun qhs doubles 26 - 30 and qhs int 26 - 30
-
-
 + is math.pow an issue? if so: for loop it up
 
++ finish chart for int averages once the qhs rerun is done (ugh)
++ make chart for double averages 
++ conduct basic analysis of rqs (use c's for constants)
++ conduct basic analysis of ts (use c's for constants)
++ get clear on counting and count/input proper c's
++ type up analysis of all 4
++ make chart of int versus double average runtimes between same algo
++ get how many operations can be done by this computer. run for loop like 1000000 times and see how long it takes
 
 ## Notes
++ should be able to reference the cormen text book when discussing the expected runtime of randomized quicksort.
+
+
+
 + all of them: implement as short[], int[] would take more careful planning because of memory issues.
 + *mergesort*: 
   + ~~progress: i can increase my jvm heapsize to abt 6gb (maybe less for short, unsure yet), and we can sort the 2^30! so, time to ask humayra about this issue tomorrow 4/8 because unclear if that's acceptable or not. need to discuss the same problem with the doubles/floats bc floats are a min 32 bits, and that will cause issues.~~
