@@ -21,8 +21,8 @@ public class Driver {
 //        generateDoubleFiles();
 //        generateIntFiles();
 
-        runAllIntBenchmarks(20, 25, 150);
-//        runAllDoubleBenchmarks(20, 25, 200);
+//        runAllIntBenchmarks(20, 25, 150);
+        runAllDoubleBenchmarks(20, 25, 200);
 
 
 //        System.out.println((int) Math.pow(2, 30));

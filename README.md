@@ -6,6 +6,8 @@ Default heap size command:
 
 ## TODO
 
++ rerun qhs doubles 26 - 30 and qhs int 26 - 30
+
 + gather last of 2^22s data, not sure what happened there lol
 + ~~gather remaining big data overnight~~ put in spread sheet
 + try QHS with ints. it should work. note any changes in performance
