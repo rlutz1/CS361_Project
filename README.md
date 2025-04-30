@@ -8,7 +8,6 @@ Default heap size command:
 
 + rerun qhs doubles 26 - 30 and qhs int 26 - 30
 
-+ gather remaining big data overnight  && put in spread sheet
 
 + is math.pow an issue? if so: for loop it up
 
