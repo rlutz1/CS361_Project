@@ -8,19 +8,11 @@ Default heap size command:
 
 + rerun qhs doubles 26 - 30 and qhs int 26 - 30
 
-+ gather last of 2^22s data, not sure what happened there lol
-+ ~~gather remaining big data overnight~~ put in spread sheet
-+ try QHS with ints. it should work. note any changes in performance
-  + on that note, keep testing it, limit of < 2^29 should be fine but i clearly had a reason at the time for 2^28 so SUSPICIOUS
++ gather last of 2^22s data, not sure what happened there lol 100 more of all of them
+
++ gather remaining big data overnight  && put in spread sheet
+
 + is math.pow an issue? if so: for loop it up
-+ implement min in timsort.
-+ change order of log and unsorted error
-+ change all double tests to write to double file
-+ just generally clean up the doubles
-+ add Int to all intsorts or combine into one file.
-+ can run with float mergesort 2^30 with 12gb to vm
-  + change all doubles to floats, test, and run benchmarks
-  + 
 
 
 ## Notes
