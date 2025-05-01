@@ -12,7 +12,7 @@ import IntSort.TimSort;
 public class Driver {
 
     public static final Log logger = new Log();
-    public static final boolean LOG = true;
+    public static final boolean LOG = false;
 
 
     public static final boolean PRINT_ARR = false;
@@ -22,7 +22,16 @@ public class Driver {
         // generating test case files for consistent testing
 //        generateDoubleFiles();
 //        generateIntFiles();
-
+//        long startTime = System.nanoTime();
+//
+//
+//        for (int i = 0; i < Integer.MAX_VALUE; i++) {
+//
+//        }
+//        long endTime = System.nanoTime();
+//
+//        System.out.println((endTime - startTime));
+//        System.out.println(Integer.MAX_VALUE);
 //        runAllIntBenchmarks(26, 30, 10);
 //        runAllDoubleBenchmarks(20, 25, 200);
 

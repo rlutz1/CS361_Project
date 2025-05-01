@@ -23,10 +23,13 @@ TS:
 + get clear on counting and count/input proper c's
 + type up analysis of all 4
 + make chart of int versus double average runtimes between same algo
-+ get how many operations can be done by this computer. run for loop like 1000000 times and see how long it takes
++ get how many operations can be done by this computer. run for loop like 1000000 times and see how long it takes? -- eh maybe too unreliable
++ maybe move the code down, keep utility functions up top, main code with line numbers with the analysis
 
 ## Notes
 + should be able to reference the cormen text book when discussing the expected runtime of randomized quicksort.
++ potential number on ops:
+  + (2^31ops)/(2754300E-6ms) ~= 779.9E6 ops/ms 
 
 
 
