@@ -15,68 +15,53 @@ public class Driver {
     public static final boolean LOG = false;
 
 
-    public static final boolean PRINT_ARR = false;
+    public static final boolean PRINT_ARR = true;
 
 
     public static void main(String[] args) {
         // generating test case files for consistent testing
 //        generateDoubleFiles();
 //        generateIntFiles();
-//        long startTime = System.nanoTime();
-//
-//
-//        for (int i = 0; i < Integer.MAX_VALUE; i++) {
-//
-//        }
-//        long endTime = System.nanoTime();
-//
-//        System.out.println((endTime - startTime));
-//        System.out.println(Integer.MAX_VALUE);
-//        runAllIntBenchmarks(26, 30, 10);
-//        runAllDoubleBenchmarks(20, 25, 200);
 
-//        System.out.println((int) Math.pow(2, 30));
-//        System.out.println((int) Math.pow(2, 30) + 1);
-//        System.out.println((int) Math.pow(2, 31));
-//        System.out.println((int) Math.pow(2, 31) + 1);
-//        System.out.println((-1) *(int) Math.pow(2, 31) - 2);
-//        testQuadHS((int) Math.pow(2, 30));
-//        testQuadHSDouble((int) Math.pow(2, 30));
-//        System.out.println();
-//        testRandomQSDouble((int) Math.pow(2, 30));
-//        System.out.println();
-//        testThreeWayMSDouble((int) Math.pow(2, 30));
-//        System.out.println();
-//        testTimSortDouble((int) Math.pow(2, 30));
+        // sanity check time
+//        testQuadHS(11);
+//        testTimSort(11);
+//        testThreeWayMS(11);
+//        testRandomQS(11);
+
+        // run all tests
+//        runAllIntBenchmarks(20, 30, 1);
+//        runAllDoubleBenchmarks(20, 30, 1);
+
     } // end main method
 
     public static void runAllDoubleBenchmarks(int low, int high, int numTestCases) {
         for (int j = low; j <= high; j++) {
             int num_numbers = (int) Math.pow(2, j);
 
-//            System.out.println("Running Random QS");
-//            for (int i = 0; i < numTestCases; i++) {
-//                testRandomQSDouble(num_numbers);
-//                System.out.println("Done: " + (i + 1));
-//            } // end loop
+            System.out.println("Running Random QS: 2^" + j);
+            for (int i = 0; i < numTestCases; i++) {
+                testRandomQSDouble(num_numbers);
+                System.out.println("Done: " + (i + 1));
+            } // end loop
 
-//            System.out.println("Running Three Way MS");
-//            for (int i = 0; i < numTestCases; i++) {
-//                testThreeWayMSDouble(num_numbers);
-//                System.out.println("Done: " + (i + 1));
-//            } // end loop
+            System.out.println("Running Three Way MS: 2^" + j);
+            for (int i = 0; i < numTestCases; i++) {
+                testThreeWayMSDouble(num_numbers);
+                System.out.println("Done: " + (i + 1));
+            } // end loop
 
-            System.out.println("Running Quad HS");
+            System.out.println("Running Quad HS: 2^" + j);
             for (int i = 0; i < numTestCases; i++) {
                 testQuadHSDouble(num_numbers);
                 System.out.println("Done: " + (i + 1));
             } // end loop
 
-//            System.out.println("Running Tim Sort");
-//            for (int i = 0; i < numTestCases; i++) {
-//                testTimSortDouble(num_numbers);
-//                System.out.println("Done: " + (i + 1));
-//            } // end loop
+            System.out.println("Running Tim Sort: 2^" + j);
+            for (int i = 0; i < numTestCases; i++) {
+                testTimSortDouble(num_numbers);
+                System.out.println("Done: " + (i + 1));
+            } // end loop
         } // end loop
     } // end method
 
@@ -84,25 +69,25 @@ public class Driver {
         for (int j = low; j <= high; j++) {
             int num_numbers = (int) Math.pow(2, j);
 
-//            System.out.println("Running Random QS");
+//            System.out.println("Running Random QS: 2^" + j);
 //            for (int i = 0; i < numTestCases; i++) {
 //                testRandomQS(num_numbers);
 //                System.out.println("Done: " + (i + 1));
 //            } // end loop
-//
-//            System.out.println("Running Three Way MS");
+
+//            System.out.println("Running Three Way MS: 2^" + j);
 //            for (int i = 0; i < numTestCases; i++) {
 //                testThreeWayMS(num_numbers);
 //                System.out.println("Done: " + (i + 1));
 //            } // end loop
 
-            System.out.println("Running Quad HS");
+            System.out.println("Running Quad HS: 2^" + j);
             for (int i = 0; i < numTestCases; i++) {
                 testQuadHS(num_numbers);
                 System.out.println("Done: " + (i + 1));
             } // end loop
 
-//            System.out.println("Running Tim Sort");
+//            System.out.println("Running Tim Sort: 2^" + j);
 //            for (int i = 0; i < numTestCases; i++) {
 //                testTimSort(num_numbers);
 //                System.out.println("Done: " + (i + 1));
