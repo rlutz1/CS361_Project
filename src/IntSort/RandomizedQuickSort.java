@@ -1,19 +1,14 @@
 package IntSort;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Random;
-import java.util.Scanner;
+
 
 /**
+ * @author Roxanne Lutz
  * Randomized quick sort: You will implement the randomized quick sort
  * algorithm. In each iteration, the pivot must be randomly chosen using a
  * random number generator.
- * todo:
- * -- investigate the stack overflow on large input > 2^23
- * -- implement an iterative version of quicksort to see if that solves the stack overflow
  */
-
 public class RandomizedQuickSort {
 
     /*
@@ -57,7 +52,7 @@ public class RandomizedQuickSort {
      * and then partition as usual to the implementation.
      * @param start the start index
      * @param end the end index
-     * @return
+     * @return the pivot index
      */
     private int partition(int start, int end) {
         swap(getRandomPivot(start, end), end); // get a random pivot choice
@@ -146,7 +141,7 @@ public class RandomizedQuickSort {
 
     /**
      * simple ascending list checker to run for testing purposes on
-     * large data sets. to make my life eaiser :)
+     * large data sets. to make my life easier :)
      * @return if the list has been sorted
      */
     public boolean isSorted() {
@@ -172,4 +167,4 @@ public class RandomizedQuickSort {
         return toSort;
     } // end getter
 
-}
+} // end class

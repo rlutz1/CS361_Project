@@ -1,17 +1,13 @@
 package IntSort;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Random;
-import java.util.Scanner;
+
 
 /**
+ * @author Roxanne Lutz
  * 3-way merge sort: You will be implementing a 3-way merge sort, which
  * divides the given input into 3 subsets of roughly equal size and recursively
- * sort each subsetd
- * todo:
- * -- read in text file to formulate a short[]; make this easy to maybe abstract out
- * --
+ * sort each subset
  */
 
 public class ThreeWayMergeSort {
@@ -39,7 +35,6 @@ public class ThreeWayMergeSort {
      * HELPER METHODS
      * =============================================================
      */
-
 
     /**
      * the sort method of three way mergesort.
@@ -164,7 +159,7 @@ public class ThreeWayMergeSort {
 
     /**
      * simple ascending list checker to run for testing purposes on
-     * large data sets. to make my life eaiser :)
+     * large data sets. to make my life easier :)
      * @return if the list has been sorted
      */
     public boolean isSorted() {
@@ -190,4 +185,4 @@ public class ThreeWayMergeSort {
         return toSort;
     } // end getter
 
-}
+} // end class
