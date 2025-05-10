@@ -7,8 +7,9 @@ import IntSort.RandomizedQuickSort;
 import IntSort.ThreeWayMergeSort;
 import IntSort.TimSort;
 
-
-
+/**
+ * main driving code of running all sorts
+ */
 public class Driver {
 
     public static final Log logger = new Log();
@@ -19,12 +20,17 @@ public class Driver {
     public static boolean SEED = false;
     public static byte DEFAULT_SEED = 42;
 
-//-pa true // print array
-//-p2 _ // power of 2
-//-n _ // size of array (literal, not power of 2)
-//-pt true
-//-r _ // number of test cases to run
-// -s true seed num
+    /**
+     * main method to run all the sort test cases.
+     *
+     * ARG PARSING
+     * -pa true => print array before and after sort
+     * -pt true => print time it took to sort in ms
+     * -p2 _ => n = power of 2
+     * -n _ => size of array (literal, not power of 2), default 0
+     * -r _ => number of test cases to run, default 1
+     * -s true => use default seed (42) for initializing array for all sorts
+     */
     public static void main(String[] args) {
         int numNumbers = 0; int numTestCases = 1;
 
@@ -63,6 +69,11 @@ public class Driver {
         runAllDoubleBenchmarks(numNumbers, numTestCases);
     } // end main method
 
+    /**
+     * run all double sorts
+     * @param numNumbers how many numbers to run
+     * @param numTestCases how many test cases to chug through
+     */
     public static void runAllDoubleBenchmarks(int numNumbers, int numTestCases) {
         System.out.println("Running Random QS with " + numNumbers);
         for (int i = 0; i < numTestCases; i++) {
@@ -89,32 +100,41 @@ public class Driver {
         } // end loop
     } // end method
 
-    public static void runAllIntBenchmarks(int num_numbers, int numTestCases) {
-        System.out.println("Running Random QS: with " + num_numbers);
+    /**
+     * run all int sorts
+     * @param numNumbers how many numbers to run
+     * @param numTestCases how many test cases to chug through
+     */
+    public static void runAllIntBenchmarks(int numNumbers, int numTestCases) {
+        System.out.println("Running Random QS with " + numNumbers);
         for (int i = 0; i < numTestCases; i++) {
-            testRandomQS(num_numbers);
+            testRandomQS(numNumbers);
             System.out.println("Done: " + (i + 1));
         } // end loop
 
-        System.out.println("Running Three Way MS with " + num_numbers);
+        System.out.println("Running Three Way MS with " + numNumbers);
         for (int i = 0; i < numTestCases; i++) {
-            testThreeWayMS(num_numbers);
+            testThreeWayMS(numNumbers);
             System.out.println("Done: " + (i + 1));
         } // end loop
 
-        System.out.println("Running Quad HS with " + num_numbers);
+        System.out.println("Running Quad HS with " + numNumbers);
         for (int i = 0; i < numTestCases; i++) {
-            testQuadHS(num_numbers);
+            testQuadHS(numNumbers);
             System.out.println("Done: " + (i + 1));
         } // end loop
 
-        System.out.println("Running Tim Sort with " + num_numbers);
+        System.out.println("Running Tim Sort with " + numNumbers);
         for (int i = 0; i < numTestCases; i++) {
-            testTimSort(num_numbers);
+            testTimSort(numNumbers);
             System.out.println("Done: " + (i + 1));
         } // end loop
     } // end method
 
+    /**
+     * test TS integer values
+     * @param numNumbers how many numbers to run
+     */
     public static void testTimSort(int numNumbers) {
         TimSort ts = new TimSort();
 
@@ -143,6 +163,10 @@ public class Driver {
 
     } // end method
 
+    /**
+     * test TS floating point values
+     * @param numNumbers how many numbers to run
+     */
     public static void testTimSortDouble(int numNumbers) {
         TimSortDouble ts = new TimSortDouble();
 
@@ -170,6 +194,10 @@ public class Driver {
             logger.log("ts_double_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
     } // end method
 
+    /**
+     * test QHS integer values
+     * @param numNumbers how many numbers to run
+     */
     public static void testQuadHS(int numNumbers) {
         QuadHeapSort qhs = new QuadHeapSort();
 
@@ -198,6 +226,10 @@ public class Driver {
 
     } // end method
 
+    /**
+     * test QHS floating point values
+     * @param numNumbers how many numbers to run
+     */
     public static void testQuadHSDouble(int numNumbers) {
         QuadHeapSortDouble qhs = new QuadHeapSortDouble();
 
@@ -225,6 +257,10 @@ public class Driver {
             logger.log("qhs_double_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
     } // end method
 
+    /**
+     * test RQS integer values
+     * @param numNumbers how many numbers to run
+     */
     public static void testRandomQS(int numNumbers) {
         RandomizedQuickSort rqs = new RandomizedQuickSort();
 
@@ -252,6 +288,10 @@ public class Driver {
             logger.log("rqs_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
     } // end method
 
+    /**
+     * test RQS floating point values
+     * @param numNumbers how many numbers to run
+     */
     public static void testRandomQSDouble(int numNumbers) {
         RandomizedQuickSortDouble rqs = new RandomizedQuickSortDouble();
 
@@ -280,6 +320,10 @@ public class Driver {
 
     } // end method
 
+    /**
+     * test TWMS integer values
+     * @param numNumbers how many numbers to run
+     */
     public static void testThreeWayMS(int numNumbers) {
         ThreeWayMergeSort twms = new ThreeWayMergeSort();
 
@@ -307,6 +351,10 @@ public class Driver {
             logger.log("twms_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
     } // end method
 
+    /**
+     * test TWMS floating point values
+     * @param numNumbers how many numbers to run
+     */
     public static void testThreeWayMSDouble(int numNumbers) {
         ThreeWayMergeSortDouble twms = new ThreeWayMergeSortDouble();
 
