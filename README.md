@@ -19,7 +19,7 @@ The following command line arguments can be used to customize the run as needed:
 + `-r ` followed by any integer >= 0 will specify the number of test cases to run.
   + Example: `-r 3` -> run the sorting algorithms 3 times on a distinct, n-sized array.
 
-For the large test cases, you will likely need to increase the heap size (2^29-2^30 specifically). Therefore, all commands below are given with `-Xmx12g` appended. You may remove this for all smaller test cases, but it is necessary to ensure the larger ones will run if the tester plans on doing so.
+For the large test cases, you will likely need to increase the heap size (2^29-2^30 specifically). Therefore, all benchmarking commands below are given with `-Xmx12g` appended. You may remove this for all smaller test cases, but it is necessary to ensure the larger ones will run if the tester plans on doing so.
 
 
 The following are test cases the can be run in the command line. Feel free to play around with the arguments! 
