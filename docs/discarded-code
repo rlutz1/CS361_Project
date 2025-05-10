@@ -63,3 +63,21 @@
 //        } // end try/catch
 //
 //    } // end method
+
+//    /**
+//     * generate a sorted list for testing purposes.
+//     * @param howMany how many total numbers
+//     * @param start the lowest number i want, will add to list until limit reached.
+//     *              upper bound given to generate is ignored.
+//     * @return list of sorted ints
+//     */
+//    private double[] sortedDataDouble (int howMany, short start) {
+//        double[] data = new double[howMany];
+//        short counter = start;
+//
+//        for (int i = 0; i < howMany; i++) {
+//            data[i] = counter; counter++;
+//        } // end loop
+//
+//        return data;
+//    } // end method

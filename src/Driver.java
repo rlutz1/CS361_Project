@@ -8,6 +8,7 @@ import IntSort.ThreeWayMergeSort;
 import IntSort.TimSort;
 
 /**
+ * @author Roxanne Lutz
  * main driving code of running all sorts
  */
 public class Driver {

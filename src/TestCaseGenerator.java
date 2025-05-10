@@ -7,6 +7,10 @@ import java.util.Random;
  * @author Roxanne Lutz
  * class to facilitate the randomized generation of
  * large test case files.
+ * This ended up being very clunky when running
+ * actual large benchmarks, so was not used for the actual
+ * numbers provided.
+ * left for reference of dev only.
  */
 
 public class TestCaseGenerator {
@@ -29,15 +33,8 @@ public class TestCaseGenerator {
     public void generateDoubles(int howMany,
                              int lowerBound,
                              int upperBound,
-//                             boolean sorted,
                              String fileName) {
-
-//        if (sorted) {
-//            testDataDouble = sortedDataDouble(howMany, (short)lowerBound);
-//        } else {
-          unsortedDataDouble(howMany, lowerBound, upperBound);
-//        } // end if
-
+        unsortedDataDouble(howMany, lowerBound, upperBound);
         File testFile = new File(testFolder + fileName);
         try {
             if (testFile.exists()) {
@@ -48,25 +45,18 @@ public class TestCaseGenerator {
         } catch (IOException e) {
             throw new RuntimeException("Test file creation issue");
         } // end try/catch
-
     } // end method
 
     /**
      * main method to generate a new test case.
      * this is for use by roxanne lutz to whip up test
      * cases as the need arises.
-     * @param howMany
-     * @param lowerBound
-     * @param upperBound
-     * @param sorted
-     * @param fileName
      */
     public void generateInts(int howMany,
                          int lowerBound,
                          int upperBound,
                          boolean sorted,
                          String fileName) {
-
         if (sorted) {
             testDataInt = sortedDataInt(howMany, (short)lowerBound);
         } else {
@@ -83,7 +73,6 @@ public class TestCaseGenerator {
         } catch (IOException e) {
             throw new RuntimeException("Test file creation issue");
         } // end try/catch
-
     } // end method
 
 
@@ -140,7 +129,7 @@ public class TestCaseGenerator {
     private void unsortedDataDouble (int howMany, int lowerBound, int upperBound) {
         Random rand = new Random();
 
-        testDataDouble = new double[howMany]; // todo, separate this out, stupid java
+        testDataDouble = new double[howMany];
 
         double next;
 
@@ -148,27 +137,9 @@ public class TestCaseGenerator {
             next = rand.nextDouble(lowerBound, upperBound + 1);
             testDataDouble[i] = Math.round((next * 100.0)) / 100.0; // 2 decimal places
         } // end loop
-
-//        return data;
     } // end method
 
-//    /**
-//     * generate a sorted list for testing purposes.
-//     * @param howMany how many total numbers
-//     * @param start the lowest number i want, will add to list until limit reached.
-//     *              upper bound given to generate is ignored.
-//     * @return list of sorted ints
-//     */
-//    private double[] sortedDataDouble (int howMany, short start) {
-//        double[] data = new double[howMany];
-//        short counter = start;
-//
-//        for (int i = 0; i < howMany; i++) {
-//            data[i] = counter; counter++;
-//        } // end loop
-//
-//        return data;
-//    } // end method
+
 
 
     /**
