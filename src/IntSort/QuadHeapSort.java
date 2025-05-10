@@ -125,26 +125,6 @@ public class QuadHeapSort {
         } // end if
     } // end method
 
-//    /**
-//     * method common to all sort classes to read in a test case file
-//     * from basic java io operations.
-//     * @param path file path given, will be ultimately from the command line/from driver
-//     *             note that the test cases are all given as csv format
-//     */
-//    public void initArray(String path, int howMany) {
-//        toSort = new short[howMany]; int counter = 0;
-//        try {
-//            Scanner s = new Scanner(new File(path)).useDelimiter(",");
-//            while (s.hasNext()) {
-//                toSort[counter] = s.nextShort(); counter++;
-//            } // end loop
-//        } catch (FileNotFoundException e) {
-//            throw new RuntimeException("Oops, no file there. Love, mergesort.");
-//        } // end try/catch
-//
-//    } // end method
-
-
     /**
      * gen a random test case
      * from basic java io operations.
@@ -153,6 +133,21 @@ public class QuadHeapSort {
         toSort = new int[howMany];
 
         Random rand = new Random();
+
+        for (int i = 0; i < howMany; i++) {
+            toSort[i] = rand.nextInt();
+        } // end loop
+
+    } // end method
+
+    /**
+     * gen a random test case with seed
+     * from basic java io operations.
+     */
+    public void initArray(int howMany, int seed) {
+        toSort = new int[howMany];
+
+        Random rand = new Random(seed);
 
         for (int i = 0; i < howMany; i++) {
             toSort[i] = rand.nextInt();
@@ -189,4 +184,4 @@ public class QuadHeapSort {
     public int[] getToSort() {
         return toSort;
     } // end getter
-}
+} // end class

@@ -14,91 +14,116 @@ public class Driver {
     public static final Log logger = new Log();
     public static final boolean LOG = false;
 
+    public static boolean PRINT_ARR = false;
+    public static boolean PRINT_TIME = false;
+    public static boolean SEED = false;
+    public static byte DEFAULT_SEED = 42;
 
-    public static final boolean PRINT_ARR = true;
-
-
+//-pa true // print array
+//-p2 _ // power of 2
+//-n _ // size of array (literal, not power of 2)
+//-pt true
+//-r _ // number of test cases to run
+// -s true seed num
     public static void main(String[] args) {
-        // generating test case files for consistent testing
-//        generateDoubleFiles();
-//        generateIntFiles();
+        int numNumbers = 0; int numTestCases = 1;
 
-        // sanity check time
-//        testQuadHS(11);
-//        testTimSort(11);
-//        testThreeWayMS(11);
-//        testRandomQS(11);
+        for (int i = 0; i < args.length; i++) {
+            switch (args[i]) {
+                case "-pa":
+                    if (args[++i].equals("true"))
+                        PRINT_ARR = true;
+                    break;
+                case "-p2":
+                    numNumbers = (int) Math.pow(2, Integer.parseInt(args[++i]));
+                    break;
+                case "-n":
+                    numNumbers = Integer.parseInt(args[++i]);
+                    break;
+                case "-pt":
+                    if (args[++i].equals("true"))
+                        PRINT_TIME = true;
+                    break;
+                case "-r":
+                    numTestCases = Integer.parseInt(args[++i]);
+                    break;
+                case "-s":
+                    if (args[++i].equals("true"))
+                        SEED = true;
+                    break;
+                default:
+                    break; // do nothing if no arg match.
+            } // end switch case
+        } // end arg parser loop
 
-        // run all tests
-//        runAllIntBenchmarks(20, 30, 1);
-//        runAllDoubleBenchmarks(20, 30, 1);
-
+        // run all sorts, int first, then floating point
+        System.out.println("========RUNNING WITH INT========");
+        runAllIntBenchmarks(numNumbers, numTestCases);
+        System.out.println("========RUNNING WITH DOUBLE========");
+        runAllDoubleBenchmarks(numNumbers, numTestCases);
     } // end main method
 
-    public static void runAllDoubleBenchmarks(int low, int high, int numTestCases) {
-        for (int j = low; j <= high; j++) {
-            int num_numbers = (int) Math.pow(2, j);
+    public static void runAllDoubleBenchmarks(int numNumbers, int numTestCases) {
+        System.out.println("Running Random QS with " + numNumbers);
+        for (int i = 0; i < numTestCases; i++) {
+            testRandomQSDouble(numNumbers);
+            System.out.println("Done: " + (i + 1));
+        } // end loop
 
-            System.out.println("Running Random QS: 2^" + j);
-            for (int i = 0; i < numTestCases; i++) {
-                testRandomQSDouble(num_numbers);
-                System.out.println("Done: " + (i + 1));
-            } // end loop
+        System.out.println("Running Three Way MS with " + numNumbers);
+        for (int i = 0; i < numTestCases; i++) {
+            testThreeWayMSDouble(numNumbers);
+            System.out.println("Done: " + (i + 1));
+        } // end loop
 
-            System.out.println("Running Three Way MS: 2^" + j);
-            for (int i = 0; i < numTestCases; i++) {
-                testThreeWayMSDouble(num_numbers);
-                System.out.println("Done: " + (i + 1));
-            } // end loop
+        System.out.println("Running Quad HS with " + numNumbers);
+        for (int i = 0; i < numTestCases; i++) {
+            testQuadHSDouble(numNumbers);
+            System.out.println("Done: " + (i + 1));
+        } // end loop
 
-            System.out.println("Running Quad HS: 2^" + j);
-            for (int i = 0; i < numTestCases; i++) {
-                testQuadHSDouble(num_numbers);
-                System.out.println("Done: " + (i + 1));
-            } // end loop
-
-            System.out.println("Running Tim Sort: 2^" + j);
-            for (int i = 0; i < numTestCases; i++) {
-                testTimSortDouble(num_numbers);
-                System.out.println("Done: " + (i + 1));
-            } // end loop
+        System.out.println("Running Tim Sort with " + numNumbers);
+        for (int i = 0; i < numTestCases; i++) {
+            testTimSortDouble(numNumbers);
+            System.out.println("Done: " + (i + 1));
         } // end loop
     } // end method
 
-    public static void runAllIntBenchmarks(int low, int high, int numTestCases) {
-        for (int j = low; j <= high; j++) {
-            int num_numbers = (int) Math.pow(2, j);
+    public static void runAllIntBenchmarks(int num_numbers, int numTestCases) {
+        System.out.println("Running Random QS: with " + num_numbers);
+        for (int i = 0; i < numTestCases; i++) {
+            testRandomQS(num_numbers);
+            System.out.println("Done: " + (i + 1));
+        } // end loop
 
-//            System.out.println("Running Random QS: 2^" + j);
-//            for (int i = 0; i < numTestCases; i++) {
-//                testRandomQS(num_numbers);
-//                System.out.println("Done: " + (i + 1));
-//            } // end loop
+        System.out.println("Running Three Way MS with " + num_numbers);
+        for (int i = 0; i < numTestCases; i++) {
+            testThreeWayMS(num_numbers);
+            System.out.println("Done: " + (i + 1));
+        } // end loop
 
-//            System.out.println("Running Three Way MS: 2^" + j);
-//            for (int i = 0; i < numTestCases; i++) {
-//                testThreeWayMS(num_numbers);
-//                System.out.println("Done: " + (i + 1));
-//            } // end loop
+        System.out.println("Running Quad HS with " + num_numbers);
+        for (int i = 0; i < numTestCases; i++) {
+            testQuadHS(num_numbers);
+            System.out.println("Done: " + (i + 1));
+        } // end loop
 
-            System.out.println("Running Quad HS: 2^" + j);
-            for (int i = 0; i < numTestCases; i++) {
-                testQuadHS(num_numbers);
-                System.out.println("Done: " + (i + 1));
-            } // end loop
-
-//            System.out.println("Running Tim Sort: 2^" + j);
-//            for (int i = 0; i < numTestCases; i++) {
-//                testTimSort(num_numbers);
-//                System.out.println("Done: " + (i + 1));
-//            } // end loop
+        System.out.println("Running Tim Sort with " + num_numbers);
+        for (int i = 0; i < numTestCases; i++) {
+            testTimSort(num_numbers);
+            System.out.println("Done: " + (i + 1));
         } // end loop
     } // end method
 
     public static void testTimSort(int numNumbers) {
         TimSort ts = new TimSort();
 
-        ts.initArray(numNumbers);
+        if (SEED) {
+            ts.initArray(numNumbers, DEFAULT_SEED);
+        } else {
+            ts.initArray(numNumbers);
+        } // end if
+
         ts.print(PRINT_ARR);
 
         long startTime = System.nanoTime();
@@ -110,6 +135,9 @@ public class Driver {
         if (!ts.isSorted())
             throw new RuntimeException("Something wasn't sorted! " + " ts int " + numNumbers);
 
+        if (PRINT_TIME)
+            System.out.println("TS Int took " + (endTime - startTime) / 1000000 + " ms.");
+
         if (LOG)
             logger.log("ts_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
 
@@ -118,7 +146,12 @@ public class Driver {
     public static void testTimSortDouble(int numNumbers) {
         TimSortDouble ts = new TimSortDouble();
 
-        ts.initArray(numNumbers);
+        if (SEED) {
+            ts.initArray(numNumbers, DEFAULT_SEED);
+        } else {
+            ts.initArray(numNumbers);
+        } // end if
+
         ts.print(PRINT_ARR);
 
         long startTime = System.nanoTime();
@@ -130,6 +163,9 @@ public class Driver {
         if (!ts.isSorted())
             throw new RuntimeException("Something wasn't sorted! " + " ts double " + numNumbers);
 
+        if (PRINT_TIME)
+            System.out.println("TS Double took " + (endTime - startTime) / 1000000 + " ms.");
+
         if (LOG)
             logger.log("ts_double_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
     } // end method
@@ -137,7 +173,12 @@ public class Driver {
     public static void testQuadHS(int numNumbers) {
         QuadHeapSort qhs = new QuadHeapSort();
 
-        qhs.initArray(numNumbers);
+        if (SEED) {
+            qhs.initArray(numNumbers, DEFAULT_SEED);
+        } else {
+            qhs.initArray(numNumbers);
+        } // end if
+
         qhs.print(PRINT_ARR);
 
         long startTime = System.nanoTime();
@@ -149,6 +190,9 @@ public class Driver {
         if (!qhs.isSorted())
             throw new RuntimeException("Something wasn't sorted! " + " qhs int " + numNumbers);
 
+        if (PRINT_TIME)
+            System.out.println("QHS Int took " + (endTime - startTime) / 1000000 + " ms.");
+
         if (LOG)
             logger.log("qhs_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
 
@@ -157,7 +201,12 @@ public class Driver {
     public static void testQuadHSDouble(int numNumbers) {
         QuadHeapSortDouble qhs = new QuadHeapSortDouble();
 
-        qhs.initArray(numNumbers);
+        if (SEED) {
+            qhs.initArray(numNumbers, DEFAULT_SEED);
+        } else {
+            qhs.initArray(numNumbers);
+        } // end if
+
         qhs.print(PRINT_ARR);
 
         long startTime = System.nanoTime();
@@ -169,6 +218,9 @@ public class Driver {
         if (!qhs.isSorted())
             throw new RuntimeException("Something wasn't sorted! " + " qhs double " + numNumbers);
 
+        if (PRINT_TIME)
+            System.out.println("QHS Double took " + (endTime - startTime) / 1000000 + " ms.");
+
         if (LOG)
             logger.log("qhs_double_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
     } // end method
@@ -176,7 +228,12 @@ public class Driver {
     public static void testRandomQS(int numNumbers) {
         RandomizedQuickSort rqs = new RandomizedQuickSort();
 
-        rqs.initArray(numNumbers);
+        if (SEED) {
+            rqs.initArray(numNumbers, DEFAULT_SEED);
+        } else {
+            rqs.initArray(numNumbers);
+        } // end if
+
         rqs.print(PRINT_ARR);
 
         long startTime = System.nanoTime();
@@ -188,6 +245,9 @@ public class Driver {
         if (!rqs.isSorted())
             throw new RuntimeException("Something wasn't sorted! " + " rqs int " + numNumbers);
 
+        if (PRINT_TIME)
+            System.out.println("RQS Int took " + (endTime - startTime) / 1000000 + " ms.");
+
         if (LOG)
             logger.log("rqs_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
     } // end method
@@ -195,7 +255,12 @@ public class Driver {
     public static void testRandomQSDouble(int numNumbers) {
         RandomizedQuickSortDouble rqs = new RandomizedQuickSortDouble();
 
-        rqs.initArray(numNumbers);
+        if (SEED) {
+            rqs.initArray(numNumbers, DEFAULT_SEED);
+        } else {
+            rqs.initArray(numNumbers);
+        } // end if
+
         rqs.print(PRINT_ARR);
 
         long startTime = System.nanoTime();
@@ -207,6 +272,9 @@ public class Driver {
         if (!rqs.isSorted())
             throw new RuntimeException("Something wasn't sorted! " + " rqs double " + numNumbers);
 
+        if (PRINT_TIME)
+            System.out.println("RQS Double took " + (endTime - startTime) / 1000000 + " ms.");
+
         if (LOG)
             logger.log("rqs_double_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
 
@@ -215,7 +283,12 @@ public class Driver {
     public static void testThreeWayMS(int numNumbers) {
         ThreeWayMergeSort twms = new ThreeWayMergeSort();
 
-        twms.initArray(numNumbers);
+        if (SEED) {
+            twms.initArray(numNumbers, DEFAULT_SEED);
+        } else {
+            twms.initArray(numNumbers);
+        } // end if
+
         twms.print(PRINT_ARR);
 
         long startTime = System.nanoTime();
@@ -227,6 +300,9 @@ public class Driver {
         if (!twms.isSorted())
             throw new RuntimeException("Something wasn't sorted! " + " twms int " + numNumbers);
 
+        if (PRINT_TIME)
+            System.out.println("TWMS Int took " + (endTime - startTime) / 1000000 + " ms.");
+
         if (LOG)
             logger.log("twms_int_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
     } // end method
@@ -234,7 +310,12 @@ public class Driver {
     public static void testThreeWayMSDouble(int numNumbers) {
         ThreeWayMergeSortDouble twms = new ThreeWayMergeSortDouble();
 
-        twms.initArray(numNumbers);
+        if (SEED) {
+            twms.initArray(numNumbers, DEFAULT_SEED);
+        } else {
+            twms.initArray(numNumbers);
+        } // end if
+
         twms.print(PRINT_ARR);
 
         long startTime = System.nanoTime();
@@ -246,48 +327,11 @@ public class Driver {
         if (!twms.isSorted())
             throw new RuntimeException("Something wasn't sorted! " + " twms double " + numNumbers);
 
+        if (PRINT_TIME)
+            System.out.println("TWMS Double took " + (endTime - startTime) / 1000000 + " ms.");
+
         if (LOG)
             logger.log("twms_double_" + numNumbers, Long.toString((endTime - startTime) / 1000000)); // log in ms
     } // end method
-
-    /**
-     * uncomment or type in whatever files you need to make.
-     * creates float point test cases.
-     * if the file exists, it will be overwritten with this new case.
-     */
-    public static void generateDoubleFiles() {
-        TestCaseGenerator gtc = new TestCaseGenerator();
-//        gtc.generateDoubles((int) Math.pow(2, 20), -500, 500, "Double_Unsorted_2^20");
-//        gtc.generateDoubles((int) Math.pow(2, 21), -500, 500, "Double_Unsorted_2^21");
-//        gtc.generateDoubles((int) Math.pow(2, 22), -500, 500, "Double_Unsorted_2^22");
-//        gtc.generateDoubles((int) Math.pow(2, 23), -500, 500, "Double_Unsorted_2^23");
-//        gtc.generateDoubles((int) Math.pow(2, 24), -500, 500, "Double_Unsorted_2^24");
-//        gtc.generateDoubles((int) Math.pow(2, 25), -500, 500, "Double_Unsorted_2^25");
-//        gtc.generateDoubles((int) Math.pow(2, 26), -500, 500, "Double_Unsorted_2^26");
-//        gtc.generateDoubles((int) Math.pow(2, 27), -500, 500, "Double_Unsorted_2^27");
-//        gtc.generateDoubles((int) Math.pow(2, 28), -500, 500, "Double_Unsorted_2^28")
-//        gtc.generateDoubles((int) Math.pow(2, 29), -500, 500, "Double_Unsorted_2^29"); // -Xmx6g
-//        gtc.generateDoubles((int) Math.pow(2, 30), -500, 500, "Double_Unsorted_2^30"); // -Xmx10g
-    } // end method
-
-    /**
-     * uncomment or type in whatever files you need to make.
-     * creates whole number/integer test cases.
-     * if the file exists, it will be overwritten with this new case.
-     */
-    public static void generateIntFiles() {
-        TestCaseGenerator gtc = new TestCaseGenerator();
-//        gtc.generateInts((int) Math.pow(2, 20), -500, 500, false, "Integer_Unsorted_2^20");
-//        gtc.generateInts((int) Math.pow(2, 21), -500, 500, false, "Integer_Unsorted_2^21");
-//        gtc.generateInts((int) Math.pow(2, 22), -500, 500, false, "Integer_Unsorted_2^22");
-//        gtc.generateInts((int) Math.pow(2, 23), -500, 500, false, "Integer_Unsorted_2^23");
-//        gtc.generateInts((int) Math.pow(2, 24), -500, 500, false, "Integer_Unsorted_2^24");
-//        gtc.generateInts((int) Math.pow(2, 25), -500, 500, false, "Integer_Unsorted_2^25");
-//        gtc.generateInts((int) Math.pow(2, 26), -500, 500, false, "Integer_Unsorted_2^26");
-//        gtc.generateInts((int) Math.pow(2, 27), -500, 500, false, "Integer_Unsorted_2^27");
-//        gtc.generateInts((int) Math.pow(2, 28), -500, 500, false, "Integer_Unsorted_2^28");
-//        gtc.generateInts((int) Math.pow(2, 29), -500, 500, false, "Integer_Unsorted_2^29");
-//        gtc.generateInts((int) Math.pow(2, 29), -500, 500, false, "Integer_Unsorted_2^29");
-     } // end method
 
 } // end class

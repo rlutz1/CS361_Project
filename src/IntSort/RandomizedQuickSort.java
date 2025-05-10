@@ -23,12 +23,6 @@ public class RandomizedQuickSort {
      */
 
     private int[] toSort = null;
-//    private short[] toSort = {
-//            2, 5, 2, 2,
-//        7, 2, 5, 2,
-//        4, 2, 2, 2,
-//        8, 10, 2, 9
-//};
     private Random random = new Random();
 
     /*
@@ -122,31 +116,26 @@ public class RandomizedQuickSort {
     } // end method
 
     /**
-     * method common to all sort classes to read in a test case file
-     * from basic java io operations.
-     * @param path file path given, will be ultimately from the command line/from driver
-     *             note that the test cases are all given as csv format
-     */
-//    public void initArray(String path, int howMany) {
-//        toSort = new int[howMany]; int counter = 0;
-//        try {
-//            Scanner s = new Scanner(new File(path)).useDelimiter(",");
-//            while (s.hasNext()) {
-//                toSort[counter] = s.nextInt(); counter++;
-//            } // end loop
-//        } catch (FileNotFoundException e) {
-//            throw new RuntimeException("Oops, no file there. Love, mergesort.");
-//        } // end try/catch
-//
-//    } // end method
-
-    /**
      * gen a random test case
      * from basic java io operations.
      */
     public void initArray(int howMany) {
         toSort = new int[howMany];
         Random rand = new Random();
+
+        for (int i = 0; i < howMany; i++) {
+            toSort[i] = rand.nextInt();
+        } // end loop
+
+    } // end method
+
+    /**
+     * gen a random test case
+     * from basic java io operations.
+     */
+    public void initArray(int howMany, int seed) {
+        toSort = new int[howMany];
+        Random rand = new Random(seed);
 
         for (int i = 0; i < howMany; i++) {
             toSort[i] = rand.nextInt();

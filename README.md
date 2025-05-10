@@ -1,5 +1,14 @@
 # CS361_Project
 
+default is false
+-pa true
+-p2 _
+-n _
+-d true // run double/floating point cases
+-pt true
+-r _ // number of test cases to run
+
+
 Default heap size command:
 -Xmx6g
 -Xmx12g -- for floats (ms and ts specifically due to 32 bit min)
