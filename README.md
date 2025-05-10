@@ -29,31 +29,31 @@ Quick note: the parsing of input is not highly regulated, so likely an error wil
 ### General Testing of Sort Capability
 
 + Run with 0 numbers:
-  `java -jar run.jar -pa true -pt true -s true -n 0`
+  + `java -jar run.jar -pa true -pt true -s true -n 0`
 + Run with 7 numbers:
-  `java -jar run.jar -pa true -pt true -s true -n 7`
+  + `java -jar run.jar -pa true -pt true -s true -n 7`
 + Run with 24 numbers
-  `java -jar run.jar -pa true -pt true -s true -n 24`
+  + `java -jar run.jar -pa true -pt true -s true -n 24`
 + Run with 100 numbers
   + Printing of array on:
-    `java -jar run.jar -pa true -pt true -s true -n 100`
+    + `java -jar run.jar -pa true -pt true -s true -n 100`
   + Printing of array off:
-    `java -jar run.jar -pt true -s true -n 100`
+    + `java -jar run.jar -pt true -s true -n 100`
 + Run with completely different test cases, each algorithm runs 3 times:
-  `java -jar run.jar -pa true -pt true -n 7 -r 3`
+  + `java -jar run.jar -pa true -pt true -n 7 -r 3`
 
 ### Testing with Specified Benchmarks
 
-The following commands will run benchmarks 2^20 - 2^30, line by line. The printing the array will be turned off in the command (but you can turn it on if you're brave, of course). Printing the time it took to sort is turned on. All commands include the command to increase the java heap size, but this is technically only needed in the 2^29 and 2^30 cases (at least on the machine the benchmarks for this project ran on).
+The following commands will run benchmarks 2^20 - 2^30, as seen below in ascending order (see `-p2` at end of each line). The printing the array will be turned off in the command (but you can turn it on if you're brave, of course). Printing the time it took to sort is turned on. All commands include the command to increase the java heap size, but this is technically only needed in the 2^29 and 2^30 cases (at least on the machine the benchmarks for this project ran on).
 
-`java -Xmx12g -jar run.jar -pt true -p2 20`
-`java -Xmx12g -jar run.jar -pt true -p2 21`
-`java -Xmx12g -jar run.jar -pt true -p2 22`
-`java -Xmx12g -jar run.jar -pt true -p2 23`
-`java -Xmx12g -jar run.jar -pt true -p2 24`
-`java -Xmx12g -jar run.jar -pt true -p2 25`
-`java -Xmx12g -jar run.jar -pt true -p2 26`
-`java -Xmx12g -jar run.jar -pt true -p2 27`
-`java -Xmx12g -jar run.jar -pt true -p2 28`
-`java -Xmx12g -jar run.jar -pt true -p2 29`
-`java -Xmx12g -jar run.jar -pt true -p2 30`
++ `java -Xmx12g -jar run.jar -pt true -p2 20`
++ `java -Xmx12g -jar run.jar -pt true -p2 21`
++ `java -Xmx12g -jar run.jar -pt true -p2 22`
++ `java -Xmx12g -jar run.jar -pt true -p2 23`
++ `java -Xmx12g -jar run.jar -pt true -p2 24`
++ `java -Xmx12g -jar run.jar -pt true -p2 25`
++ `java -Xmx12g -jar run.jar -pt true -p2 26`
++ `java -Xmx12g -jar run.jar -pt true -p2 27`
++ `java -Xmx12g -jar run.jar -pt true -p2 28`
++ `java -Xmx12g -jar run.jar -pt true -p2 29`
++ `java -Xmx12g -jar run.jar -pt true -p2 30`
