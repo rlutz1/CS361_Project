@@ -3,11 +3,10 @@ package DoubleSort;
 import java.util.Random;
 
 /**
+ * @author Roxanne Lutz
  * Sorting using a quad heap: You will be implementing a modified heap
  * called a quad-heap, which is a degree 4 tree that is filled on all levels
  * except the very last, that is filled from left to right
- * todo:
- *
  */
 
 public class QuadHeapSortDouble {
@@ -67,7 +66,6 @@ public class QuadHeapSortDouble {
      * @param end ending point to stop at
      */
     public void maxHeapify(int start, int end) {
-//        if (start < (int) Math.pow(2,28)) { // limit to note
         if (start < 268435456) { // limit to note, 2^28
             // grab all 4 children
             int child1 = 4 * start + 1;
@@ -161,7 +159,7 @@ public class QuadHeapSortDouble {
 
     /**
      * simple ascending list checker to run for testing purposes on
-     * large data sets. to make my life eaiser :)
+     * large data sets. to make my life easier :)
      * @return if the list has been sorted
      */
     public boolean isSorted() {
@@ -187,4 +185,5 @@ public class QuadHeapSortDouble {
     public float[] getToSort() {
         return toSort;
     } // end getter
-}
+
+} // end class

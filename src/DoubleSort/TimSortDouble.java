@@ -3,13 +3,11 @@ package DoubleSort;
 import java.util.Random;
 
 /**
+ * @author Roxanne Lutz
  * Tim sort: Tim sort is a hybrid sorting algorithm derived from merge sort
  * and insertion sort, designed to perform well on real-world data. It is the
  * default sorting algorithm in Python, Java, and Android
- * todo:
- *
  */
-
 public class TimSortDouble {
 
     /*
@@ -19,7 +17,7 @@ public class TimSortDouble {
      */
 
     private float[] toSort = null;
-    private final static byte MIN_RUN = 32; // todo: min run size default for tim sort, 32 for completion
+    private final static byte MIN_RUN = 32;
 
 
     /*
@@ -42,7 +40,6 @@ public class TimSortDouble {
      * general approach is:
      * (1) use insertion sort on sub arrays of no more than 32 in length
      * (2) use merge from mergesort to merge the sorted arrays.
-     * as of 4/6/25, these will be implemented with no optimzations to begin with.
      */
     public void sort() {
 
@@ -54,17 +51,18 @@ public class TimSortDouble {
         // merge the sub runs, increasing the sub run length with each iteration
         for (int j = MIN_RUN; j < toSort.length; j *= 2) {
             for (int i = 0; i < toSort.length; i += 2 * j) {
-                merge(i, min(toSort.length - 1, i + j - 1), i + j, min(toSort.length - 1, i + (2 * j) - 1));
+                merge(
+                        i, min(toSort.length - 1, i + j - 1),
+                        i + j, min(toSort.length - 1, i + (2 * j) - 1));
             } // end loop
         } // end loop
 
     } // end method
 
     /**
-     * todo:
-     * optimize with binary search?
-     * @param low
-     * @param high
+     * unaltered insertion sort implementation.
+     * @param low index of start of subarray
+     * @param high index end of subarray
      */
     private void insertionSort(int low, int high) {
         int j; float temp;
@@ -84,14 +82,13 @@ public class TimSortDouble {
     } // end method
 
     /**
-     * todo: issue with memory on my machine with 2^30 case.
-     * -- optimize with galloping?
-     * basic merge function from merge sort.
-     * @param startA
-     * @param endA
-     * @param startB
-     * @param endB
-     * @return
+     * merge method to take two starts, two ends, and merge the two
+     * sorted sections into a temporary array,
+     * which is then copied into the final array.
+     * @param startA given first starting index
+     * @param endA given first ending index
+     * @param startB given second starting index
+     * @param endB given second ending index
      */
     private void merge(int startA, int endA, int startB, int endB) {
         int i = startA, j = startB, k = 0;
@@ -181,7 +178,7 @@ public class TimSortDouble {
 
     /**
      * simple ascending list checker to run for testing purposes on
-     * large data sets. to make my life eaiser :)
+     * large data sets. to make my life easier :)
      * @return if the list has been sorted
      */
     public boolean isSorted() {
@@ -208,4 +205,4 @@ public class TimSortDouble {
         return toSort;
     } // end getter
 
-}
+} // end class
