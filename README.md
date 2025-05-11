@@ -3,7 +3,7 @@
 
 ## How to Run 
 
-All test cases will be run using the included `run.jar` file at the top of this directory. If run by itself with no arguments, it will ALL 4 sorts, running integer cases first, then floating point, using completely random test cases for each. The run will execute by default with 0 numbers and 1 test case iteration. This can be seen by running:
+All test cases are recommended to be run using the included `run.jar` file at the top of this directory. If run by itself with no arguments, it will ALL 4 sorts, running integer cases first, then floating point, using completely random test cases for each. The run will execute by default with 0 numbers and 1 test case iteration. This can be seen by running:
 
 `java -jar run.jar`
 
@@ -21,10 +21,11 @@ The following command line arguments can be used to customize the run as needed:
 
 For the large test cases, you will likely need to increase the heap size (2^29-2^30 specifically). Therefore, all benchmarking commands below are given with `-Xmx12g` appended. You may remove this for all smaller test cases, but it is necessary to ensure the larger ones will run if the tester plans on doing so.
 
-
-The following are test cases the can be run in the command line. Feel free to play around with the arguments! 
+The following are test cases that can be run in the command line. Feel free to play around with the arguments! 
 
 Quick note: the parsing of input is not highly regulated, so likely an error will be thrown by default on any strange input on command line, or the argument will be ignored if unrecognized. All parsing can be viewed in the project files /src/Driver.java.
+
+All benchmarking was completed by running the code within the IntelliJ IDE, so that is also completely an option if it is easier for the tester. The jar is included for ease of use only.
 
 ### General Testing of Sort Capability
 
@@ -44,7 +45,7 @@ Quick note: the parsing of input is not highly regulated, so likely an error wil
 
 ### Testing with Specified Benchmarks
 
-The following commands will run benchmarks 2^20 - 2^30, as seen below in ascending order (see `-p2` at end of each line). The printing the array will be turned off in the command (but you can turn it on if you're brave, of course). Printing the time it took to sort is turned on. All commands include the command to increase the java heap size, but this is technically only needed in the 2^29 and 2^30 cases (at least on the machine the benchmarks for this project ran on).
+The following commands will run benchmarks 2^20 - 2^30, as seen below in ascending order (see `-p2` at end of each line). The printing the array will be turned off in the command (but you can turn it on if you need the out, of course. By adding the `-pa true` flag to the following commands, you can also redirect the output as needed to a text file of choice). Printing the time it took to sort is turned on. All commands include the command to increase the java heap size, but this is technically only needed in the 2^29 and 2^30 cases (at least on the machine the benchmarks for this project ran on).
 
 + `java -Xmx12g -jar run.jar -pt true -p2 20`
 + `java -Xmx12g -jar run.jar -pt true -p2 21`
